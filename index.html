@@ -130,7 +130,7 @@
 
 
   <title> Kiorffen Blog </title>
-<link rel="stylesheet" href="/css/prism-solarizedlight.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-dark.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -428,7 +428,7 @@
 <p>有一个求数组中最大和最小数的题目，基本的思路是遍历一遍数组，然后每个一个元素都和最大值和最小值比较，时间复杂度是2(N-1)或2N。</p>
 <p>比较简单的一种减少复杂度的方法是把数组的元素两两分组比较，然后较大的数和max比较，较小的数和min比较，这种实现方法的时间复杂度是1.5N。</p>
 <p>还有一种是采用分治法，比较次数也是1.5N，思路是将数组一分为二，分别获取两个子数组的最大和最小值，然后进行取两个子数组中较小的最小值和较大的最大值。</p>
-<p>$$O(N) = (N/2 + N/4 + … + N/2^(log2(N))) = 3N/2 (收敛?)$$</p>
+<p>O(N) = (N/2 + N/4 + … + N/2^(log2(N))) = 3N/2 (收敛?)</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/18/article1/#more" rel="contents">
@@ -1145,28 +1145,6 @@
 
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
 
