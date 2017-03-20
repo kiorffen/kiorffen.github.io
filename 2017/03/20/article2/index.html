@@ -87,22 +87,16 @@
 
 
 
-<meta name="description" content="文件转码工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。
-方法1：linux的iconv转码命令例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：
-iconv -">
+<meta name="description" content="文件转码工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务器后端文件转码">
 <meta property="og:url" content="http://kiorffen.com/2017/03/20/article2/index.html">
 <meta property="og:site_name" content="Kiorffen Blog">
-<meta property="og:description" content="文件转码工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。
-方法1：linux的iconv转码命令例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：
-iconv -">
-<meta property="og:updated_time" content="2017-03-20T12:15:58.583Z">
+<meta property="og:description" content="文件转码工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。">
+<meta property="og:updated_time" content="2017-03-20T12:16:34.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务器后端文件转码">
-<meta name="twitter:description" content="文件转码工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。
-方法1：linux的iconv转码命令例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：
-iconv -">
+<meta name="twitter:description" content="文件转码工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。">
 
 
 
@@ -426,6 +420,7 @@ iconv -">
 
       
         <h2 id="文件转码"><a href="#文件转码" class="headerlink" title="文件转码"></a>文件转码</h2><p>工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。</p>
+<a id="more"></a>
 <h3 id="方法1：linux的iconv转码命令"><a href="#方法1：linux的iconv转码命令" class="headerlink" title="方法1：linux的iconv转码命令"></a>方法1：linux的iconv转码命令</h3><p>例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：</p>
 <pre class="line-numbers language-shell"><code class="language-shell">iconv -f UTF-8 -t GBK input_file(原编码文件) -o output_file(目标编码文件)
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
