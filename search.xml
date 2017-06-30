@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Python正则使用示例]]></title>
+      <url>%2F2017%2F06%2F30%2Farticle8%2F</url>
+      <content type="text"><![CDATA[使用python从一段文本中使用正则匹配自己需要的文本，如果使用search，只会进行一次匹配，group(0)里面的内容是全匹配，group(1)里面的内容是括号里面的子正则。如果需要全部匹配就使用findall，我这里的就是全匹配，返回的是一个列表，每一项内容就是括号里的字正则匹配内容。 #!/usr/bin/env python import re import sys import json class RegexImg(object): def __init__(self): self.pattern = re.compile(r'{\"img_src\":\"(.*?)",\"rcv_url\"') def process(self, str): return self.pattern.findall(str) def main(): dict = sys.argv[1] input = sys.argv[2] output = sys.argv[3] regex_img = RegexImg() dt = {} with open(dict, 'r') as fd, open(input, 'r') as fin, open(output, 'w') as fout: for line in fd: parts = line.rstrip().split('\t') if len(parts) != 2: print "wrong format line:%s" % line continue dt[parts[0]] = parts[1] for line in fin: parts = line.rstrip().split('\t') if len(parts) != 3: print "wrong format line:%s" % line continue ideaid = parts[0] material = parts[2] matchs = regex_img.process(material) if len(matchs) != 3: print "wrong img num:%d" % len(matchs) print matchs continue if ideaid not in dt: print "ideaid:%s has not its planid" % (ideaid) continue tmp_dt = {} tmp_dt["planid"] = dt[ideaid] tmp_dt["img_src"] = matchs json_str = json.dumps(tmp_dt) fout.write("%s\n" % json_str) if __name__ == "__main__": main()]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Sublime新版本提示]]></title>
       <url>%2F2017%2F04%2F07%2Farticle7%2F</url>
       <content type="text"><![CDATA[使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。 使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦 &quot;a new version of sublime text is available, download now?&quot; 去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。 { ...... &quot;update_check&quot;: false, ...... }]]></content>
