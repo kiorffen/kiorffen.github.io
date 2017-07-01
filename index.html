@@ -414,63 +414,14 @@
 
       
         
-          
-            <p>使用python从一段文本中使用正则匹配自己需要的文本，如果使用search，只会进行一次匹配，group(0)里面的内容是全匹配，group(1)里面的内容是括号里面的子正则。如果需要全部匹配就使用findall，我这里的就是全匹配，返回的是一个列表，每一项内容就是括号里的字正则匹配内容。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
-
-<span class="token keyword">import</span> re
-<span class="token keyword">import</span> sys
-<span class="token keyword">import</span> json
-
-<span class="token keyword">class</span> <span class="token class-name">RegexImg</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>pattern <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">'{\"img_src\":\"(.*?)",\"rcv_url\"'</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">process</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>pattern<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>str<span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    dict <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
-    output <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
-
-    regex_img <span class="token operator">=</span> RegexImg<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    dt <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>dict<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fd<span class="token punctuation">,</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">,</span> open<span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fout<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fd<span class="token punctuation">:</span>
-            parts <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\t'</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> len<span class="token punctuation">(</span>parts<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">2</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span> <span class="token string">"wrong format line:%s"</span> <span class="token operator">%</span> line
-                <span class="token keyword">continue</span>
-            dt<span class="token punctuation">[</span>parts<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> parts<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fin<span class="token punctuation">:</span>
-            parts <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\t'</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> len<span class="token punctuation">(</span>parts<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">3</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span> <span class="token string">"wrong format line:%s"</span> <span class="token operator">%</span> line
-                <span class="token keyword">continue</span>
-            ideaid <span class="token operator">=</span> parts<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-            material <span class="token operator">=</span> parts<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
-            matchs <span class="token operator">=</span> regex_img<span class="token punctuation">.</span>process<span class="token punctuation">(</span>material<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> len<span class="token punctuation">(</span>matchs<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">3</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span> <span class="token string">"wrong img num:%d"</span> <span class="token operator">%</span> len<span class="token punctuation">(</span>matchs<span class="token punctuation">)</span>
-                <span class="token keyword">print</span> matchs
-                <span class="token keyword">continue</span>
-            <span class="token keyword">if</span> ideaid <span class="token operator">not</span> <span class="token keyword">in</span> dt<span class="token punctuation">:</span>
-                <span class="token keyword">print</span> <span class="token string">"ideaid:%s has not its planid"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>ideaid<span class="token punctuation">)</span>
-                <span class="token keyword">continue</span>
-            tmp_dt <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-            tmp_dt<span class="token punctuation">[</span><span class="token string">"planid"</span><span class="token punctuation">]</span> <span class="token operator">=</span> dt<span class="token punctuation">[</span>ideaid<span class="token punctuation">]</span>
-            tmp_dt<span class="token punctuation">[</span><span class="token string">"img_src"</span><span class="token punctuation">]</span> <span class="token operator">=</span> matchs
-            json_str <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>tmp_dt<span class="token punctuation">)</span>
-            fout<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"%s\n"</span> <span class="token operator">%</span> json_str<span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-          
+          <p>使用python从一段文本中使用正则匹配自己需要的文本，如果使用search，只会进行一次匹配，group(0)里面的内容是全匹配，group(1)里面的内容是括号里面的子正则。如果需要全部匹配就使用findall，我这里的就是全匹配，返回的是一个列表，每一项内容就是括号里的字正则匹配内容。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/30/article8/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
