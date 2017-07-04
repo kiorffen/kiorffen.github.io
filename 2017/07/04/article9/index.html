@@ -87,16 +87,21 @@
 
 
 
-<meta name="description" content="最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。">
+<meta name="description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。
+但是我个人更喜欢一个更简单的做法：就是利用pyth">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python正则使用-替换文本中的html标签">
-<meta property="og:url" content="http://kiorffen.com/2017/03/20/article3/index.html">
+<meta property="og:title" content="article9">
+<meta property="og:url" content="http://kiorffen.com/2017/07/04/article9/index.html">
 <meta property="og:site_name" content="Kiorffen Blog">
-<meta property="og:description" content="最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。">
-<meta property="og:updated_time" content="2017-03-20T13:08:02.154Z">
+<meta property="og:description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。
+但是我个人更喜欢一个更简单的做法：就是利用pyth">
+<meta property="og:image" content="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg">
+<meta property="og:updated_time" content="2017-07-04T05:09:08.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python正则使用-替换文本中的html标签">
-<meta name="twitter:description" content="最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。">
+<meta name="twitter:title" content="article9">
+<meta name="twitter:description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。
+但是我个人更喜欢一个更简单的做法：就是利用pyth">
+<meta name="twitter:image" content="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg">
 
 
 
@@ -124,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://kiorffen.com/2017/03/20/article3/"/>
+  <link rel="canonical" href="http://kiorffen.com/2017/07/04/article9/"/>
 
 
 
 
 
-  <title> Python正则使用-替换文本中的html标签 | Kiorffen Blog </title>
+  <title> article9 | Kiorffen Blog </title>
 <link rel="stylesheet" href="/css/prism-coy.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -304,7 +309,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kiorffen.com/2017/03/20/article3/">
+    <link itemprop="mainEntityOfPage" href="http://kiorffen.com/2017/07/04/article9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kiorffen">
@@ -325,7 +330,7 @@
             
             
               
-                Python正则使用-替换文本中的html标签
+                article9
               
             
           </h1>
@@ -340,8 +345,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T21:00:11+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T13:06:41+08:00">
+                2017-07-04
               </time>
             
 
@@ -381,7 +386,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/03/20/article3/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/07/04/article9/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -390,7 +395,7 @@
 
           
           
-             <span id="/2017/03/20/article3/" class="leancloud_visitors" data-flag-title="Python正则使用-替换文本中的html标签">
+             <span id="/2017/07/04/article9/" class="leancloud_visitors" data-flag-title="article9">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,40 +424,76 @@
       
 
       
-        <p>最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。</p>
-<a id="more"></a>   
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
+        <h1 id="基于Python的CGIHTTPServer简单的交互实现"><a href="#基于Python的CGIHTTPServer简单的交互实现" class="headerlink" title="基于Python的CGIHTTPServer简单的交互实现"></a>基于Python的CGIHTTPServer简单的交互实现</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。</p>
+<p>但是我个人更喜欢一个更简单的做法：就是利用python自带的CGIHTTPServer作为服务器，然后通过一个简单的html页面进行交互，通过post请求直接调用总控脚本，与用户进行交互。</p>
+<p><img src="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg" alt="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg"></p>
+<a id="more"></a>
+<h2 id="使用方法和示例"><a href="#使用方法和示例" class="headerlink" title="使用方法和示例"></a>使用方法和示例</h2><h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>Python的CGIHTTPServer一般是与python一起安装的，使用如下命令既可以启动，为了便于组织目录，建议先建立一个目录，比如web，然后再运行下面的命令。</p>
+<pre class="line-numbers language-shell"><code class="language-shell">nohup python -m CGIHTTPServer 8088 &
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上面的命令使CGIHTTPServer在非中断后台运行，运行log可以通过当前目录下的nohup.out查看。</p>
+<h3 id="编写交互页面"><a href="#编写交互页面" class="headerlink" title="编写交互页面"></a>编写交互页面</h3><p>在启动server的当前目录下，建立一个index.html文件，编写内容如下。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Content-Type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html; charset<span class="token punctuation">=</span>gbk<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span> Python-CGIHTTPServer使用示例 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>author<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Haiyu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>center</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span> Python-CGIHTTPServer使用示例 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>center</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">height</span><span class="token punctuation">:</span><span class="token number">5</span>px<span class="token punctuation">;</span><span class="token property">border</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span><span class="token property">border-top</span><span class="token punctuation">:</span><span class="token number">5</span>px ridge green<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>center</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>计算圆的周长<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>center</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>center</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>请输入圆的半径长度.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cgi-bin/c_length.sh<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span> <span class="token attr-name">enctype</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/plain<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+           radius:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radius<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radius<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c_length<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c_length<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>计算周长<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>center</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">height</span><span class="token punctuation">:</span><span class="token number">5</span>px<span class="token punctuation">;</span><span class="token property">border</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span><span class="token property">border-top</span><span class="token punctuation">:</span><span class="token number">5</span>px ridge green<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个界面的功能非常简单，使用一个form表单接收用户的提交的半径参数，然后计算完周长之后进行返回，使用post请求。</p>
+<h3 id="CGI脚本"><a href="#CGI脚本" class="headerlink" title="CGI脚本"></a>CGI脚本</h3><p>这个才是我们后端开发同学最关心的内容，这个脚本就是用来完成主要的逻辑操作进行返回，因为我们后端同学关注更多的不是交互界面的华丽而是逻辑处理的正确性和严谨性，根据我的经验，后端不管多么复杂的处理流程，最终都可以用一个脚本包起来，根据输入得到输出，这里面的输入就是我们用户提交的参数，输出就是我们经过层层处理之后需要返回的内容。<br>这个脚本建议放在server运行目录下新建立的cgi-bin目录中。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 
-<span class="token triple-quoted-string string">"""
-Notes:
-    A python script that use regex to replace all the label of a html file
-"""</span>
+mysql_bin<span class="token operator">=</span>/home/work/mysql/bin/mysql
 
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> sys
-<span class="token keyword">import</span> re
+<span class="token keyword">echo</span> <span class="token string">"Content-Type:text/html; Charset=gbk"</span>
+<span class="token keyword">echo</span> <span class="token string">""</span>
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    input_file <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input_file<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fp<span class="token punctuation">:</span>
-            line <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            pattern <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">'&lt;([^>]*)>'</span><span class="token punctuation">)</span>
-            match_list <span class="token operator">=</span> pattern<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
-            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>match_list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span> <span class="token string">"matched:%s"</span> <span class="token operator">%</span>match_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-            line <span class="token operator">=</span> pattern<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span>
-                <span class="token keyword">print</span> line
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输入文件 </p>
-<pre><code> helle&lt;p&gt;world&lt;/p&gt;&lt;br/&gt;
-</code></pre><p>输出结果</p>
-<pre><code>matched:p
-matched:/p
-matched:br/
-helleworld
-</code></pre><p>这里说一下，Python的re模块的findall函数返回的是正则模式里面组所匹配的内容，可以方便进一步使用。</p>
+<span class="token keyword">echo</span> <span class="token string">"&lt;br/>"</span>
+radius<span class="token operator">=</span>0
+c_length<span class="token operator">=</span>0
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$REQUEST_METHOD</span>"</span> <span class="token operator">==</span> <span class="token string">"POST"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token function">read</span> vars
+    <span class="token keyword">echo</span> <span class="token string">"<span class="token variable">$vars</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> -F <span class="token string">"="</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span> <span class="token operator">></span> temp
+    dos2unix temp
+    radius<span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> temp<span class="token variable">`</span></span>
+    c_length<span class="token operator">=</span><span class="token punctuation">$(</span>echo <span class="token string">"scale=2;2*3.14*<span class="token variable">$radius</span>"</span> <span class="token operator">|</span> bc<span class="token punctuation">)</span>
+
+    <span class="token keyword">echo</span> <span class="token string">"&lt;br/>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;table border="</span>5<span class="token string">" cellpadding="</span>10<span class="token string">">"</span>
+    <span class="token keyword">echo</span> <span class="token string">"Userid Info:"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;tr>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;td>半径&lt;/td>&lt;td>周长&lt;/td>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;/tr>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;tr>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;td>"</span><span class="token variable">$radius</span><span class="token string">"&lt;/td>&lt;td>"</span><span class="token variable">$c_length</span><span class="token string">"&lt;/td>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;/tr>"</span>
+    <span class="token keyword">echo</span> <span class="token string">"&lt;/table>"</span>
+<span class="token keyword">fi</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是使用Python的CGIHTTPServer进行用户交互的主要内容，其优点就是开发使用方便，让后端同学能更加专注于业务逻辑处理相关的内容。不足之处可能就是不够正规，使用有风险，因为使用的是纯CGI协议交互，记得之前排查过一个bash的cgi漏洞，使用起来可能会有风险，因此这种方式更适合开发一套对内使用的简易工具，不建议对外部用户暴露。</p>
 
       
     </div>
@@ -495,8 +536,8 @@ helleworld
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/20/article2/" rel="next" title="服务器后端文件转码">
-                <i class="fa fa-chevron-left"></i> 服务器后端文件转码
+              <a href="/2017/06/30/article8/" rel="next" title="Python正则使用示例">
+                <i class="fa fa-chevron-left"></i> Python正则使用示例
               </a>
             
           </div>
@@ -504,10 +545,6 @@ helleworld
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/21/article4/" rel="prev" title="多机同步hexo博客">
-                多机同步hexo博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -570,8 +607,17 @@ helleworld
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o7s8xir65.bkt.clouddn.com/touxiang.jpeg"
@@ -644,6 +690,22 @@ helleworld
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基于Python的CGIHTTPServer简单的交互实现"><span class="nav-number">1.</span> <span class="nav-text">基于Python的CGIHTTPServer简单的交互实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法和示例"><span class="nav-number">1.2.</span> <span class="nav-text">使用方法和示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务"><span class="nav-number">1.2.1.</span> <span class="nav-text">启动服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写交互页面"><span class="nav-number">1.2.2.</span> <span class="nav-text">编写交互页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CGI脚本"><span class="nav-number">1.2.3.</span> <span class="nav-text">CGI脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
