@@ -305,6 +305,197 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://kiorffen.com/2017/11/03/article10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kiorffen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://o7s8xir65.bkt.clouddn.com/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kiorffen Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/03/article10/" itemprop="url">
+                  阿里云机器安装Tensorflow和Paddlepaddle
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T16:47:11+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML/" itemprop="url" rel="index">
+                    <span itemprop="name">ML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/03/article10/" class="leancloud_visitors" data-flag-title="阿里云机器安装Tensorflow和Paddlepaddle">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="阿里云机器安装tensorflow和paddlepaddle"><a href="#阿里云机器安装tensorflow和paddlepaddle" class="headerlink" title="阿里云机器安装tensorflow和paddlepaddle"></a>阿里云机器安装tensorflow和paddlepaddle</h3><p>准备用自己1核1G的阿里云机器学习一下深度学习知识，工欲善其事，必先利其器，话不多说，下面开始安装。</p>
+<h4 id="安装anaconda2"><a href="#安装anaconda2" class="headerlink" title="安装anaconda2"></a>安装anaconda2</h4><p>anaconda2是什么请自行百度，其实我也只知道他是一个python发行版，包含了很多计算工具包。<br>买的是最低版本的配置，直接wget官网的anaconda，居然只有100k左右的速度，于是我先下载到自己mac上，然后scp到阿里云机器上，mac可以直接scp到阿里云机器，一般人我不告诉他，这个速度可以达到5m左右，也超出了我的认识，怎么会这么快？不会是bug吧。。。<br>下载好的anaconda直接 bash xxx.sh 就可以完成安装。</p>
+<h4 id="安装tensorflow"><a href="#安装tensorflow" class="headerlink" title="安装tensorflow"></a>安装tensorflow</h4><p>tensorflow是google的jeff dean开发的，深度学习平台应该是大哥。</p>
+<ul>
+<li>创建虚拟环境</li>
+</ul>
+<pre><code>conda create -n tensorflow python=2.7
+</code></pre><ul>
+<li>进入环境安装tensorflow</li>
+</ul>
+<pre><code>source activate tensorflow
+
+pip install --upgrade
+https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
+
+soource deactivate //退出虚拟环境
+</code></pre><p>我安装的是cpu版本</p>
+<ul>
+<li>验证<br>进入python命令行环境</li>
+</ul>
+<pre><code>import tensorflow as tf
+</code></pre><p>不报错就是ok了。</p>
+<h4 id="安装paddlepaddle"><a href="#安装paddlepaddle" class="headerlink" title="安装paddlepaddle"></a>安装paddlepaddle</h4><p>ddlepaddle是国内的百度开发，网上说入门比tensorflow要简单一些。paddlepaddle的安装和tensorflow类似，都是使用anaconda创建虚拟环境进行安装。</p>
+<p>创建虚拟环境</p>
+<pre><code>conda create -n paddlepaddle python=2.7
+</code></pre><ul>
+<li>进入虚拟环境安装</li>
+</ul>
+<pre><code>source activate paddlepaddle
+
+pip install --upgrade paddlepaddle // cpu版本
+
+soource deactivate //退出虚拟环境
+</code></pre><ul>
+<li>验证<br>进入python命令行模式执行下面语句，没有出错应该就安装成功了。</li>
+</ul>
+<pre><code>import paddle.v2 as paddle
+</code></pre><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>其实我对机器学习和深度学习基本不了解，但是公司内部现在非常流行用AI的思维解决问题，个人感觉还是很有必要学习一下，主要是能多一些解决问题的思路，这个也有可能就是以后的趋势。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://kiorffen.com/2017/07/04/article9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -934,164 +1125,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kiorffen.com/2017/03/22/article5-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kiorffen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://o7s8xir65.bkt.clouddn.com/touxiang.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kiorffen Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/22/article5-md/" itemprop="url">
-                  C语言正则表达式使用及注意点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T16:17:41+08:00">
-                2017-03-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/22/article5-md/" class="leancloud_visitors" data-flag-title="C语言正则表达式使用及注意点">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="C语言正则表达式使用及注意点"><a href="#C语言正则表达式使用及注意点" class="headerlink" title="C语言正则表达式使用及注意点"></a>C语言正则表达式使用及注意点</h1><p>正则表达式作为程序员必备的高效率技能之一，程序开发中不可避免的就会用到，最近在开发中就需要使用C语言的正则表达式来解决一些问题。吐槽一句（gcc版本太低，用不了C++11的特性，也就用不了c++的regex）。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/22/article5-md/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1141,7 +1174,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1152,7 +1185,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1163,7 +1196,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
