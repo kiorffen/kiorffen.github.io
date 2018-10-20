@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="vim," />
 
 
 
@@ -87,15 +87,28 @@
 
 
 
-<meta name="description" content="高山仰止，景行行止；虽不能至，心向往之。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kiorffen Blog">
-<meta property="og:url" content="http://kiorffen.com/archives/2017/page/2/index.html">
+<meta name="description" content="想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。简单列一下需要安装的工具：
+
+vim8.0以上，需要完美支持vim-go
+vundle，管理vim插件
+youcompleteme，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim_config">
+<meta property="og:url" content="http://kiorffen.com/2018/10/20/vim-config/index.html">
 <meta property="og:site_name" content="Kiorffen Blog">
-<meta property="og:description" content="高山仰止，景行行止；虽不能至，心向往之。">
+<meta property="og:description" content="想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。简单列一下需要安装的工具：
+
+vim8.0以上，需要完美支持vim-go
+vundle，管理vim插件
+youcompleteme，">
+<meta property="og:updated_time" content="2018-10-20T11:40:17.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kiorffen Blog">
-<meta name="twitter:description" content="高山仰止，景行行止；虽不能至，心向往之。">
+<meta name="twitter:title" content="vim_config">
+<meta name="twitter:description" content="想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。简单列一下需要安装的工具：
+
+vim8.0以上，需要完美支持vim-go
+vundle，管理vim插件
+youcompleteme，">
 
 
 
@@ -123,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://kiorffen.com/archives/2017/page/2/"/>
+  <link rel="canonical" href="http://kiorffen.com/2018/10/20/vim-config/"/>
 
 
 
 
 
-  <title> 归档 | Kiorffen Blog </title>
+  <title> vim_config | Kiorffen Blog </title>
 <link rel="stylesheet" href="/css/prism-coy.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -155,7 +168,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,218 +306,287 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 13 篇文章。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://kiorffen.com/2018/10/20/vim-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kiorffen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://o7s8xir65.bkt.clouddn.com/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kiorffen Blog">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vim_config
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T19:34:11+08:00">
+                2018-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/20/vim-config/" class="leancloud_visitors" data-flag-title="vim_config">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。<br>简单列一下需要安装的工具：</p>
+<ul>
+<li>vim8.0以上，需要完美支持vim-go</li>
+<li>vundle，管理vim插件</li>
+<li>youcompleteme，这个不需要多说，自动补全的神器</li>
+<li>vim-go，支持vim写golang的代码提示，语法高亮，代码跳转等</li>
+</ul>
+<p>下面开始安装过程：</p>
+<ol>
+<li>vim8.0安装<br>删除系统自带的vim<pre><code>yum remove -y vim-enhanced
+</code></pre></li>
+</ol>
+<p>安装必须lib</p>
+<pre><code>sudo yum install python-devel
+sudo yum install ncurses-devel -y
+</code></pre><a id="more"></a>
+<p>安装vim</p>
+<pre><code>wget https://github.com/vim/vim/archive/master.zip
+unzip master.zip
+cd vim-master
+cd src/
+./configure --with-features=huge --enable-pythoninterp=yes --with-python-config-dir=/usr/lib/python2.7/config
+sudo make
+sudo make install
+</code></pre><p>2.安装vundle插件</p>
+<pre><code>mkdir -p ~/.vim/bundle 
+cd bundle
+git clone https://github.com/gmarik/vundle.git
+</code></pre><p>编辑~/.vimrc,内容如下：</p>
+<pre><code>set expandtab
+set ts=4
+set sw=4
+set sts=4
+set tw=100
+set cindent
+set autoindent
+set nu
+
+set noai nosi
+
+set nocompatible               &quot; be iMproved
+set backspace=indent,eol,start
+syntax on
+
+filetype off                   &quot; required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+&quot; let Vundle manage Vundle
+&quot; required!
+Bundle &#39;gmarik/vundle&#39;
+&quot; My Bundles here:
+Bundle &#39;fatih/vim-go&#39;
+Bundle &#39;Valloric/YouCompleteMe&#39;
+
+filetype plugin indent on     &quot; required!
+&quot;
+&quot; Brief help
+&quot; :BundleList          - list configured bundles
+&quot; :BundleInstall(!)    - install(update) bundles
+&quot; :BundleSearch(!) foo - search(or refresh cache first) for foo
+&quot; :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+&quot;
+&quot; see :h vundle for more details or wiki for FAQ
+&quot; NOTE: comments after Bundle command are not allowed..
+
+let g:ycm_global_ycm_extra_conf = &#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py&#39;
+set tags+=./tags,/usr/include/tags
+</code></pre><p>执行BundleInstall,安装vim-go和youcomleteme</p>
+<p>3.安装youcompleteme，先支持C/C++代码补全<br>上一步是先将youcomplete下载到本地，需要编译一下才能YcmServer，编译过程如下：</p>
+<pre><code>cd ./vim/bundle/YouCompleteMe
+./install.py --clang-complete
+</code></pre><p>到这youcompleteme基本安装完成，可以支持基本文本提示功能，如果需要支持C/C++的补全，需要进行如下操作</p>
+<pre><code>cd /home/work/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm
+cp /home/work/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py .
+</code></pre><p>编辑ycm_extra_conf.py，在flag下面加入下面配置：</p>
+<pre><code>&#39;/usr/include/c++/4.8.2/&#39;,
+&#39;/usr/include/c++/4.8.5/&#39;,
+&#39;/usr/include&#39;,
+</code></pre><p>vimrc加入如下配置</p>
+<pre><code>let g:ycm_global_ycm_extra_conf = &#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py&#39;
+set tags+=./tags,/usr/include/tags
+</code></pre><p>生成tags使用ctags，一般除了在自己工程根目录下生成一个tags文件，还可以在/usr/include/目录下也生成一下，并加入tags路径，生成tags的命令如下。</p>
+<pre><code>ctags --c-kinds=+px --c++-kinds=+px --fields=+iafksS --extra=+qf -R .
+</code></pre><p>4.支持golang代码补全<br>vim-go安装好之后，执行GoInstallBinaries，会自动安装go-def，gofmt，gocode等工具，这些工具支持go代码跳转，代码格式化，代码高亮等功能，详细可以参考github上的介绍。</p>
+<p>到这一步，基本安装好了一个完整的支持c/c++，golang代码补全，代码跳转等功能的vim环境。在此过程中可能还需要安装一些必要的工作包，比如git，ctags，gcc, gcc-c++, cmake,ctags等工具，我这边都是使用系统工具yum自动安装，centos7.0以上支持这些软件版本基本都能满足需求。</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vim/" rel="tag"># vim</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/03/article10/" rel="next" title="阿里云机器安装Tensorflow和Paddlepaddle">
+                <i class="fa fa-chevron-left"></i> 阿里云机器安装Tensorflow和Paddlepaddle
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/22/article5-md/" itemprop="url">
-              
-                <span itemprop="name">C语言正则表达式使用及注意点</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-22T16:17:41+08:00"
-              content="2017-03-22" >
-          03-22
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32">
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_cqq"></a>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_douban"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/21/article4/" itemprop="url">
-              
-                <span itemprop="name">多机同步hexo博客</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-21T10:48:57+08:00"
-              content="2017-03-21" >
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/20/article3/" itemprop="url">
-              
-                <span itemprop="name">Python正则使用-替换文本中的html标签</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-20T21:00:11+08:00"
-              content="2017-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/20/article2/" itemprop="url">
-              
-                <span itemprop="name">服务器后端文件转码</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-20T20:09:41+08:00"
-              content="2017-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/18/article1/" itemprop="url">
-              
-                <span itemprop="name">寻找一个数组中的最大和最小数</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-18T12:19:47+08:00"
-              content="2017-03-18" >
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
           
           </div>
@@ -512,6 +594,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -710,11 +798,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
@@ -748,6 +834,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138407"></script>
+      <!-- UY END -->
     
   
 
