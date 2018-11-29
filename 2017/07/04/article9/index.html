@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="Kiorffen Blog">
 <meta property="og:description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。
 但是我个人更喜欢一个更简单的做法：就是利用pyth">
-<meta property="og:image" content="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg">
-<meta property="og:updated_time" content="2017-07-04T05:10:58.030Z">
+<meta property="og:image" content="http://cdn.tanghaiyu.com/python-cgi.jpg">
+<meta property="og:updated_time" content="2018-11-29T02:08:39.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Python的CGIHTTPServer简单的交互实现">
 <meta name="twitter:description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。
 但是我个人更喜欢一个更简单的做法：就是利用pyth">
-<meta name="twitter:image" content="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg">
+<meta name="twitter:image" content="http://cdn.tanghaiyu.com/python-cgi.jpg">
 
 
 
@@ -416,7 +416,7 @@
       
         <h1 id="基于Python的CGIHTTPServer简单的交互实现"><a href="#基于Python的CGIHTTPServer简单的交互实现" class="headerlink" title="基于Python的CGIHTTPServer简单的交互实现"></a>基于Python的CGIHTTPServer简单的交互实现</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。</p>
 <p>但是我个人更喜欢一个更简单的做法：就是利用python自带的CGIHTTPServer作为服务器，然后通过一个简单的html页面进行交互，通过post请求直接调用总控脚本，与用户进行交互。</p>
-<p><img src="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg" alt="http://o7s8xir65.bkt.clouddn.com/python-cgi.jpg"></p>
+<p><img src="http://cdn.tanghaiyu.com/python-cgi.jpg" alt="http://cdn.tanghaiyu.com/python-cgi.jpg"></p>
 <a id="more"></a>
 <h2 id="使用方法和示例"><a href="#使用方法和示例" class="headerlink" title="使用方法和示例"></a>使用方法和示例</h2><h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>Python的CGIHTTPServer一般是与python一起安装的，使用如下命令既可以启动，为了便于组织目录，建议先建立一个目录，比如web，然后再运行下面的命令。</p>
 <pre class="line-numbers language-shell"><code class="language-shell">nohup python -m CGIHTTPServer 8088 &
