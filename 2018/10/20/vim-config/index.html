@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tanghaiyu.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。简单列一下需要安装的工具：  vim8.0以上，需要完美支持vim-go vundle，管理vim插件 youcompleteme，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="海外机器vim配置，支持C++和golang的代码补全和跳转">
+<meta property="og:url" content="http://tanghaiyu.com/2018/10/20/vim-config/index.html">
+<meta property="og:site_name" content="Tang Haiyu Blog">
+<meta property="og:description" content="想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。简单列一下需要安装的工具：  vim8.0以上，需要完美支持vim-go vundle，管理vim插件 youcompleteme，">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-10-20T11:34:11.000Z">
+<meta property="article:modified_time" content="2021-10-15T02:49:49.899Z">
+<meta property="article:author" content="Kiorffen">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://tanghaiyu.com/2018/10/20/vim-config/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>海外机器vim配置，支持C++和golang的代码补全和跳转 | Tang Haiyu Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-coy.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Tang Haiyu Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-csdn">
+
+    <a href="http://blog.csdn.net/tanghaiyu777" rel="noopener" target="_blank"><i class="fa fa-csdn fa-fw"></i>csdn</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2018/10/20/vim-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://cdn.tanghaiyu.com/touxiang.jpeg">
+      <meta itemprop="name" content="Kiorffen">
+      <meta itemprop="description" content="高山仰止，景行行止；虽不能至，心向往之。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tang Haiyu Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          海外机器vim配置，支持C++和golang的代码补全和跳转
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-20 19:34:11" itemprop="dateCreated datePublished" datetime="2018-10-20T19:34:11+08:00">2018-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-15 10:49:49" itemprop="dateModified" datetime="2021-10-15T10:49:49+08:00">2021-10-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。<br>简单列一下需要安装的工具：</p>
+<ul>
+<li>vim8.0以上，需要完美支持vim-go</li>
+<li>vundle，管理vim插件</li>
+<li>youcompleteme，这个不需要多说，自动补全的神器</li>
+<li>vim-go，支持vim写golang的代码提示，语法高亮，代码跳转等</li>
+</ul>
+<p>下面开始安装过程：</p>
+<p>1.vim8.0安装<br>删除系统自带的vim</p>
+<pre><code>yum remove -y vim-enhanced
+</code></pre>
+<p>安装必须lib</p>
+<pre><code>sudo yum install python-devel
+sudo yum install ncurses-devel -y
+</code></pre>
+<span id="more"></span>
+
+<p>安装vim</p>
+<pre><code>wget https://github.com/vim/vim/archive/master.zip
+unzip master.zip
+cd vim-master
+cd src/
+./configure --with-features=huge --enable-pythoninterp=yes --with-python-config-dir=/usr/lib/python2.7/config
+sudo make
+sudo make install
+</code></pre>
+<p>2.安装vundle插件</p>
+<pre><code>mkdir -p ~/.vim/bundle 
+cd bundle
+git clone https://github.com/gmarik/vundle.git
+</code></pre>
+<p>编辑~/.vimrc,内容如下：</p>
+<pre><code>set expandtab
+set ts=4
+set sw=4
+set sts=4
+set tw=100
+set cindent
+set autoindent
+set nu
+
+set noai nosi
+
+set nocompatible               &quot; be iMproved
+set backspace=indent,eol,start
+syntax on
+
+filetype off                   &quot; required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+&quot; let Vundle manage Vundle
+&quot; required!
+Bundle &#39;gmarik/vundle&#39;
+&quot; My Bundles here:
+Bundle &#39;fatih/vim-go&#39;
+Bundle &#39;Valloric/YouCompleteMe&#39;
+
+filetype plugin indent on     &quot; required!
+&quot;
+&quot; Brief help
+&quot; :BundleList          - list configured bundles
+&quot; :BundleInstall(!)    - install(update) bundles
+&quot; :BundleSearch(!) foo - search(or refresh cache first) for foo
+&quot; :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+&quot;
+&quot; see :h vundle for more details or wiki for FAQ
+&quot; NOTE: comments after Bundle command are not allowed..
+
+let g:ycm_global_ycm_extra_conf = &#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py&#39;
+set tags+=./tags,/usr/include/tags
+</code></pre>
+<p>执行BundleInstall,安装vim-go和youcomleteme</p>
+<p>3.安装youcompleteme，先支持C/C++代码补全<br>上一步是先将youcomplete下载到本地，需要编译一下才能YcmServer，编译过程如下：</p>
+<pre><code>cd ./vim/bundle/YouCompleteMe
+./install.py --clang-complete
+</code></pre>
+<p>到这youcompleteme基本安装完成，可以支持基本文本提示功能，如果需要支持C/C++的补全，需要进行如下操作</p>
+<pre><code>cd /home/work/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm
+cp /home/work/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py .
+</code></pre>
+<p>编辑ycm_extra_conf.py，在flag下面加入下面配置：</p>
+<pre><code>&#39;/usr/include/c++/4.8.2/&#39;,
+&#39;/usr/include/c++/4.8.5/&#39;,
+&#39;/usr/include&#39;,
+</code></pre>
+<p>vimrc加入如下配置</p>
+<pre><code>let g:ycm_global_ycm_extra_conf = &#39;~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py&#39;
+set tags+=./tags,/usr/include/tags
+</code></pre>
+<p>生成tags使用ctags，一般除了在自己工程根目录下生成一个tags文件，还可以在/usr/include/目录下也生成一下，并加入tags路径，生成tags的命令如下。</p>
+<pre><code>ctags --c-kinds=+px --c++-kinds=+px --fields=+iafksS --extra=+qf -R .
+</code></pre>
+<p>4.支持golang代码补全<br>vim-go安装好之后，执行GoInstallBinaries，会自动安装go-def，gofmt，gocode等工具，这些工具支持go代码跳转，代码格式化，代码高亮等功能，详细可以参考github上的介绍。</p>
+<p>到这一步，基本安装好了一个完整的支持c/c++，golang代码补全，代码跳转等功能的vim环境。在此过程中可能还需要安装一些必要的工作包，比如git，ctags，gcc, gcc-c++, cmake,ctags等工具，我这边都是使用系统工具yum自动安装，centos7.0以上支持这些软件版本基本都能满足需求。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vim/" rel="tag"># vim</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/03/article10/" rel="prev" title="阿里云机器安装Tensorflow和Paddlepaddle">
+      <i class="fa fa-chevron-left"></i> 阿里云机器安装Tensorflow和Paddlepaddle
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/07/old-file-delete/" rel="next" title="一个删除旧文件的shell脚本（非常好用）">
+      一个删除旧文件的shell脚本（非常好用） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kiorffen"
+      src="http://cdn.tanghaiyu.com/touxiang.jpeg">
+  <p class="site-author-name" itemprop="name">Kiorffen</p>
+  <div class="site-description" itemprop="description">高山仰止，景行行止；虽不能至，心向往之。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kiorffen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kiorffen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tanghaiyu@163.com" title="E-Mail → mailto:tanghaiyu@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kiorffen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

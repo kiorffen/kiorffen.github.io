@@ -45,6 +45,67 @@
 ]]></content>
   </entry>
   <entry>
+    <title>阿里云机器安装Tensorflow和Paddlepaddle</title>
+    <url>/2017/11/03/article10/</url>
+    <content><![CDATA[<h3 id="阿里云机器安装tensorflow和paddlepaddle"><a href="#阿里云机器安装tensorflow和paddlepaddle" class="headerlink" title="阿里云机器安装tensorflow和paddlepaddle"></a>阿里云机器安装tensorflow和paddlepaddle</h3><p>准备用自己1核1G的阿里云机器学习一下深度学习知识，工欲善其事，必先利其器，话不多说，下面开始安装。</p>
+<h4 id="安装anaconda2"><a href="#安装anaconda2" class="headerlink" title="安装anaconda2"></a>安装anaconda2</h4><p>anaconda2是什么请自行百度，其实我也只知道他是一个python发行版，包含了很多计算工具包。<br>买的是最低版本的配置，直接wget官网的anaconda，居然只有100k左右的速度，于是我先下载到自己mac上，然后scp到阿里云机器上，mac可以直接scp到阿里云机器，一般人我不告诉他，这个速度可以达到5m左右，也超出了我的认识，怎么会这么快？不会是bug吧。。。<br>下载好的anaconda直接 bash xxx.sh 就可以完成安装。</p>
+<span id="more"></span>
+
+<h4 id="安装tensorflow"><a href="#安装tensorflow" class="headerlink" title="安装tensorflow"></a>安装tensorflow</h4><p>tensorflow是google的jeff dean开发的，深度学习平台应该是大哥。</p>
+<ul>
+<li>创建虚拟环境</li>
+</ul>
+<pre><code>conda create -n tensorflow python=2.7
+</code></pre>
+<ul>
+<li>进入环境安装tensorflow</li>
+</ul>
+<pre><code>source activate tensorflow
+
+pip install --upgrade
+https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
+
+soource deactivate //退出虚拟环境
+</code></pre>
+<p>我安装的是cpu版本</p>
+<ul>
+<li>验证</li>
+</ul>
+<p>进入python命令行环境</p>
+<pre><code>import tensorflow as tf
+</code></pre>
+<p>不报错就是ok了。</p>
+<h4 id="安装paddlepaddle"><a href="#安装paddlepaddle" class="headerlink" title="安装paddlepaddle"></a>安装paddlepaddle</h4><p>ddlepaddle是国内的百度开发，网上说入门比tensorflow要简单一些。paddlepaddle的安装和tensorflow类似，都是使用anaconda创建虚拟环境进行安装。</p>
+<ul>
+<li>创建虚拟环境</li>
+</ul>
+<pre><code>conda create -n paddlepaddle python=2.7
+</code></pre>
+<ul>
+<li>进入虚拟环境安装</li>
+</ul>
+<pre><code>source activate paddlepaddle
+
+pip install --upgrade paddlepaddle // cpu版本
+
+soource deactivate //退出虚拟环境
+</code></pre>
+<ul>
+<li>验证</li>
+</ul>
+<p>进入python命令行模式执行下面语句，没有出错应该就安装成功了。</p>
+<pre><code>import paddle.v2 as paddle
+</code></pre>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>其实我对机器学习和深度学习基本不了解，但是公司内部现在非常流行用AI的思维解决问题，个人感觉还是很有必要学习一下，主要是能多一些解决问题的思路，这个也有可能就是以后的趋势。</p>
+]]></content>
+      <categories>
+        <category>ML</category>
+      </categories>
+      <tags>
+        <tag>ML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>寻找一个数组中的最大和最小数</title>
     <url>/2017/03/18/article1/</url>
     <content><![CDATA[<p>工作一段快两年了，感觉之前学的数据结构和算法基本忘得差不多了，最近一段时间准备复习一下相关知识。</p>
@@ -114,67 +175,6 @@
       </categories>
       <tags>
         <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云机器安装Tensorflow和Paddlepaddle</title>
-    <url>/2017/11/03/article10/</url>
-    <content><![CDATA[<h3 id="阿里云机器安装tensorflow和paddlepaddle"><a href="#阿里云机器安装tensorflow和paddlepaddle" class="headerlink" title="阿里云机器安装tensorflow和paddlepaddle"></a>阿里云机器安装tensorflow和paddlepaddle</h3><p>准备用自己1核1G的阿里云机器学习一下深度学习知识，工欲善其事，必先利其器，话不多说，下面开始安装。</p>
-<h4 id="安装anaconda2"><a href="#安装anaconda2" class="headerlink" title="安装anaconda2"></a>安装anaconda2</h4><p>anaconda2是什么请自行百度，其实我也只知道他是一个python发行版，包含了很多计算工具包。<br>买的是最低版本的配置，直接wget官网的anaconda，居然只有100k左右的速度，于是我先下载到自己mac上，然后scp到阿里云机器上，mac可以直接scp到阿里云机器，一般人我不告诉他，这个速度可以达到5m左右，也超出了我的认识，怎么会这么快？不会是bug吧。。。<br>下载好的anaconda直接 bash xxx.sh 就可以完成安装。</p>
-<span id="more"></span>
-
-<h4 id="安装tensorflow"><a href="#安装tensorflow" class="headerlink" title="安装tensorflow"></a>安装tensorflow</h4><p>tensorflow是google的jeff dean开发的，深度学习平台应该是大哥。</p>
-<ul>
-<li>创建虚拟环境</li>
-</ul>
-<pre><code>conda create -n tensorflow python=2.7
-</code></pre>
-<ul>
-<li>进入环境安装tensorflow</li>
-</ul>
-<pre><code>source activate tensorflow
-
-pip install --upgrade
-https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
-
-soource deactivate //退出虚拟环境
-</code></pre>
-<p>我安装的是cpu版本</p>
-<ul>
-<li>验证</li>
-</ul>
-<p>进入python命令行环境</p>
-<pre><code>import tensorflow as tf
-</code></pre>
-<p>不报错就是ok了。</p>
-<h4 id="安装paddlepaddle"><a href="#安装paddlepaddle" class="headerlink" title="安装paddlepaddle"></a>安装paddlepaddle</h4><p>ddlepaddle是国内的百度开发，网上说入门比tensorflow要简单一些。paddlepaddle的安装和tensorflow类似，都是使用anaconda创建虚拟环境进行安装。</p>
-<ul>
-<li>创建虚拟环境</li>
-</ul>
-<pre><code>conda create -n paddlepaddle python=2.7
-</code></pre>
-<ul>
-<li>进入虚拟环境安装</li>
-</ul>
-<pre><code>source activate paddlepaddle
-
-pip install --upgrade paddlepaddle // cpu版本
-
-soource deactivate //退出虚拟环境
-</code></pre>
-<ul>
-<li>验证</li>
-</ul>
-<p>进入python命令行模式执行下面语句，没有出错应该就安装成功了。</p>
-<pre><code>import paddle.v2 as paddle
-</code></pre>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>其实我对机器学习和深度学习基本不了解，但是公司内部现在非常流行用AI的思维解决问题，个人感觉还是很有必要学习一下，主要是能多一些解决问题的思路，这个也有可能就是以后的趋势。</p>
-]]></content>
-      <categories>
-        <category>ML</category>
-      </categories>
-      <tags>
-        <tag>ML</tag>
       </tags>
   </entry>
   <entry>
@@ -285,30 +285,6 @@ helleworld
       </categories>
       <tags>
         <tag>建站相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Sublime新版本提示</title>
-    <url>/2017/04/07/article7/</url>
-    <content><![CDATA[<p>使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。</p>
-<p>使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦</p>
-<pre><code>&quot;a new version of sublime text is available, download now?&quot;
-</code></pre>
-<span id="more"></span>
-
-<p>去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。</p>
-<pre><code>&#123;
-    ......
-    &quot;update_check&quot;: false,
-    ......
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>编辑器</category>
-      </categories>
-      <tags>
-        <tag>编辑器</tag>
       </tags>
   </entry>
   <entry>
@@ -517,6 +493,30 @@ int main() &#123;
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Sublime新版本提示</title>
+    <url>/2017/04/07/article7/</url>
+    <content><![CDATA[<p>使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。</p>
+<p>使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦</p>
+<pre><code>&quot;a new version of sublime text is available, download now?&quot;
+</code></pre>
+<span id="more"></span>
+
+<p>去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。</p>
+<pre><code>&#123;
+    ......
+    &quot;update_check&quot;: false,
+    ......
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>编辑器</category>
+      </categories>
+      <tags>
+        <tag>编辑器</tag>
       </tags>
   </entry>
   <entry>
