@@ -218,6 +218,28 @@ soource deactivate //退出虚拟环境
       </tags>
   </entry>
   <entry>
+    <title>多机同步hexo博客</title>
+    <url>/2017/03/21/article4/</url>
+    <content><![CDATA[<h2 id="多机同步hexo博客"><a href="#多机同步hexo博客" class="headerlink" title="多机同步hexo博客"></a>多机同步hexo博客</h2><p>在阿里云开发机上借助Github-Pages和hexo搭建了个人blog，现在想在Mac和Win7下面继续更新博客的文章，如果每次都登陆开发机也可能会比较麻烦，所以干脆在多台机器上把环境都配置一下。</p>
+<span id="more"></span>
+
+<h3 id="把源代码上传到github"><a href="#把源代码上传到github" class="headerlink" title="把源代码上传到github"></a>把源代码上传到github</h3><p>在github上申请一个仓库，将blog的源代码提交到仓库，这是多机同步第一步。</p>
+<h3 id="安装必要的依赖"><a href="#安装必要的依赖" class="headerlink" title="安装必要的依赖"></a>安装必要的依赖</h3><ul>
+<li>需要安装git和nodejs</li>
+<li>与github建立新机器的ssh信任关系，windows借助git-bash</li>
+<li>clone源代码</li>
+<li>使用npm安装hexo等依赖，这个不需要每一个依赖都单独安装了，可以在clone源代码之后，进入目录直接执行npm-install。它会根据package.json的依赖关系自动安装所有依赖。</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>以后使用npm安装依赖时，都建议使用本地安装，加上–save参数，这样就会把依赖关系同步到package.json，方便多机同步环境。</p>
+]]></content>
+      <categories>
+        <category>建站相关</category>
+      </categories>
+      <tags>
+        <tag>建站相关</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python正则使用-替换文本中的html标签</title>
     <url>/2017/03/20/article3/</url>
     <content><![CDATA[<p>最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。</p>
@@ -263,28 +285,6 @@ helleworld
       </categories>
       <tags>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多机同步hexo博客</title>
-    <url>/2017/03/21/article4/</url>
-    <content><![CDATA[<h2 id="多机同步hexo博客"><a href="#多机同步hexo博客" class="headerlink" title="多机同步hexo博客"></a>多机同步hexo博客</h2><p>在阿里云开发机上借助Github-Pages和hexo搭建了个人blog，现在想在Mac和Win7下面继续更新博客的文章，如果每次都登陆开发机也可能会比较麻烦，所以干脆在多台机器上把环境都配置一下。</p>
-<span id="more"></span>
-
-<h3 id="把源代码上传到github"><a href="#把源代码上传到github" class="headerlink" title="把源代码上传到github"></a>把源代码上传到github</h3><p>在github上申请一个仓库，将blog的源代码提交到仓库，这是多机同步第一步。</p>
-<h3 id="安装必要的依赖"><a href="#安装必要的依赖" class="headerlink" title="安装必要的依赖"></a>安装必要的依赖</h3><ul>
-<li>需要安装git和nodejs</li>
-<li>与github建立新机器的ssh信任关系，windows借助git-bash</li>
-<li>clone源代码</li>
-<li>使用npm安装hexo等依赖，这个不需要每一个依赖都单独安装了，可以在clone源代码之后，进入目录直接执行npm-install。它会根据package.json的依赖关系自动安装所有依赖。</li>
-</ul>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>以后使用npm安装依赖时，都建议使用本地安装，加上–save参数，这样就会把依赖关系同步到package.json，方便多机同步环境。</p>
-]]></content>
-      <categories>
-        <category>建站相关</category>
-      </categories>
-      <tags>
-        <tag>建站相关</tag>
       </tags>
   </entry>
   <entry>
@@ -496,6 +496,30 @@ int main() &#123;
       </tags>
   </entry>
   <entry>
+    <title>Sublime新版本提示</title>
+    <url>/2017/04/07/article7/</url>
+    <content><![CDATA[<p>使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。</p>
+<p>使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦</p>
+<pre><code>&quot;a new version of sublime text is available, download now?&quot;
+</code></pre>
+<span id="more"></span>
+
+<p>去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。</p>
+<pre><code>&#123;
+    ......
+    &quot;update_check&quot;: false,
+    ......
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>编辑器</category>
+      </categories>
+      <tags>
+        <tag>编辑器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python正则使用示例</title>
     <url>/2017/06/30/article8/</url>
     <content><![CDATA[<p>使用python从一段文本中使用正则匹配自己需要的文本，如果使用search，只会进行一次匹配，group(0)里面的内容是全匹配，group(1)里面的内容是括号里面的子正则。如果需要全部匹配就使用findall，我这里的就是全匹配，返回的是一个列表，每一项内容就是括号里的字正则匹配内容。</p>
@@ -559,30 +583,6 @@ int main() &#123;
       </categories>
       <tags>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Sublime新版本提示</title>
-    <url>/2017/04/07/article7/</url>
-    <content><![CDATA[<p>使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。</p>
-<p>使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦</p>
-<pre><code>&quot;a new version of sublime text is available, download now?&quot;
-</code></pre>
-<span id="more"></span>
-
-<p>去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。</p>
-<pre><code>&#123;
-    ......
-    &quot;update_check&quot;: false,
-    ......
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>编辑器</category>
-      </categories>
-      <tags>
-        <tag>编辑器</tag>
       </tags>
   </entry>
   <entry>
