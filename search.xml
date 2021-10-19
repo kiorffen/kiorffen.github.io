@@ -117,94 +117,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python正则使用-替换文本中的html标签</title>
-    <url>/2017/03/20/article3/</url>
-    <content><![CDATA[<p>最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。</p>
-<span id="more"></span>   
-
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
-
-<span class="token triple-quoted-string string">"""
-Notes:
-    A python script that use regex to replace all the label of a html file
-"""</span>
-
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> sys
-<span class="token keyword">import</span> re
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    input_file <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input_file<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fp<span class="token punctuation">:</span>
-            line <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            pattern <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">'&lt;([^>]*)>'</span><span class="token punctuation">)</span>
-            match_list <span class="token operator">=</span> pattern<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
-            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>match_list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span> <span class="token string">"matched:%s"</span> <span class="token operator">%</span>match_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-            line <span class="token operator">=</span> pattern<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span>
-                <span class="token keyword">print</span> line
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输入文件 </p>
-<pre><code> helle&lt;p&gt;world&lt;/p&gt;&lt;br/&gt;
-</code></pre>
-<p>输出结果</p>
-<pre><code>matched:p
-matched:/p
-matched:br/
-helleworld
-</code></pre>
-<p>这里说一下，Python的re模块的findall函数返回的是正则模式里面组所匹配的内容，可以方便进一步使用。</p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>服务器后端文件转码</title>
-    <url>/2017/03/20/article2/</url>
-    <content><![CDATA[<h2 id="文件转码"><a href="#文件转码" class="headerlink" title="文件转码"></a>文件转码</h2><p>工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。</p>
-<span id="more"></span>
-
-<h3 id="方法1：linux的iconv转码命令"><a href="#方法1：linux的iconv转码命令" class="headerlink" title="方法1：linux的iconv转码命令"></a>方法1：linux的iconv转码命令</h3><p>例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">iconv</span> -f UTF-8 -t GBK input_file<span class="token punctuation">(</span>原编码文件<span class="token punctuation">)</span> -o output_file<span class="token punctuation">(</span>目标编码文件<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这个命令使用起来非常方便，但是也经常对一些特殊字符转化无能为力，导致文件转码失败。如果我们可以忽略那些特殊字符，只需要整个文件转码完成，则可以使用方法二。</p>
-<h3 id="方法2：使用一个简单python脚本"><a href="#方法2：使用一个简单python脚本" class="headerlink" title="方法2：使用一个简单python脚本"></a>方法2：使用一个简单python脚本</h3><p>代码如下，核心代码就一行。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
-
-<span class="token keyword">import</span> sys
-
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    output <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
-
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">,</span> open<span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fout<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fin<span class="token punctuation">:</span>
-            line <span class="token operator">=</span> line<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
-            fout<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>脚本的使用方式很简单。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">python iconv.py input output
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这两个方法都不复杂，个人一般先使用方法1，如果失败的话再使用方法2。</p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>阿里云机器安装Tensorflow和Paddlepaddle</title>
     <url>/2017/11/03/article10/</url>
     <content><![CDATA[<h3 id="阿里云机器安装tensorflow和paddlepaddle"><a href="#阿里云机器安装tensorflow和paddlepaddle" class="headerlink" title="阿里云机器安装tensorflow和paddlepaddle"></a>阿里云机器安装tensorflow和paddlepaddle</h3><p>准备用自己1核1G的阿里云机器学习一下深度学习知识，工欲善其事，必先利其器，话不多说，下面开始安装。</p>
@@ -266,6 +178,94 @@ soource deactivate //退出虚拟环境
       </tags>
   </entry>
   <entry>
+    <title>服务器后端文件转码</title>
+    <url>/2017/03/20/article2/</url>
+    <content><![CDATA[<h2 id="文件转码"><a href="#文件转码" class="headerlink" title="文件转码"></a>文件转码</h2><p>工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。</p>
+<span id="more"></span>
+
+<h3 id="方法1：linux的iconv转码命令"><a href="#方法1：linux的iconv转码命令" class="headerlink" title="方法1：linux的iconv转码命令"></a>方法1：linux的iconv转码命令</h3><p>例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">iconv</span> -f UTF-8 -t GBK input_file<span class="token punctuation">(</span>原编码文件<span class="token punctuation">)</span> -o output_file<span class="token punctuation">(</span>目标编码文件<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这个命令使用起来非常方便，但是也经常对一些特殊字符转化无能为力，导致文件转码失败。如果我们可以忽略那些特殊字符，只需要整个文件转码完成，则可以使用方法二。</p>
+<h3 id="方法2：使用一个简单python脚本"><a href="#方法2：使用一个简单python脚本" class="headerlink" title="方法2：使用一个简单python脚本"></a>方法2：使用一个简单python脚本</h3><p>代码如下，核心代码就一行。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
+
+<span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    output <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">,</span> open<span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fout<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> line <span class="token keyword">in</span> fin<span class="token punctuation">:</span>
+            line <span class="token operator">=</span> line<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
+            fout<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>脚本的使用方式很简单。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">python iconv.py input output
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这两个方法都不复杂，个人一般先使用方法1，如果失败的话再使用方法2。</p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python正则使用-替换文本中的html标签</title>
+    <url>/2017/03/20/article3/</url>
+    <content><![CDATA[<p>最近因为需要把字符串中的html标签替换掉，想到的是使用正则来做，因为原来模块是用C++码的，所以就用的glibc的regex来做的。后来查资料发现用python来做这件事，简单方便，而且一次性可以完成所有替换，不想用C还需要自己写程序移动指针完成替换。不多说了上代码，很简单。</p>
+<span id="more"></span>   
+
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
+
+<span class="token triple-quoted-string string">"""
+Notes:
+    A python script that use regex to replace all the label of a html file
+"""</span>
+
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> re
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    input_file <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input_file<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> line <span class="token keyword">in</span> fp<span class="token punctuation">:</span>
+            line <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            pattern <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>r<span class="token string">'&lt;([^>]*)>'</span><span class="token punctuation">)</span>
+            match_list <span class="token operator">=</span> pattern<span class="token punctuation">.</span>findall<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>match_list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span> <span class="token string">"matched:%s"</span> <span class="token operator">%</span>match_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            line <span class="token operator">=</span> pattern<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+                <span class="token keyword">print</span> line
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输入文件 </p>
+<pre><code> helle&lt;p&gt;world&lt;/p&gt;&lt;br/&gt;
+</code></pre>
+<p>输出结果</p>
+<pre><code>matched:p
+matched:/p
+matched:br/
+helleworld
+</code></pre>
+<p>这里说一下，Python的re模块的findall函数返回的是正则模式里面组所匹配的内容，可以方便进一步使用。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多机同步hexo博客</title>
     <url>/2017/03/21/article4/</url>
     <content><![CDATA[<h2 id="多机同步hexo博客"><a href="#多机同步hexo博客" class="headerlink" title="多机同步hexo博客"></a>多机同步hexo博客</h2><p>在阿里云开发机上借助Github-Pages和hexo搭建了个人blog，现在想在Mac和Win7下面继续更新博客的文章，如果每次都登陆开发机也可能会比较麻烦，所以干脆在多台机器上把环境都配置一下。</p>
@@ -288,72 +288,27 @@ soource deactivate //退出虚拟环境
       </tags>
   </entry>
   <entry>
-    <title>Python模版引擎Jinja2</title>
-    <url>/2017/03/24/article6/</url>
-    <content><![CDATA[<h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>最近在调研开发一个BS服务框架，需要能够根据protobuf文件以及配置文件能够自动生成相关的代码，代码注册之后可以直接编译得到一个直接支持一种数据流的BS服务模块。即实现一个可以根据数据格式定制化的BS服务框架。因为要自动生成的代码有很多，如果使用python直接把这些代码打印出来，那工作将完全无法开展，并且生成代码的格式不好控制。</p>
-<p>根据之前模板渲染的开发经验，完全可以像开发html模板一样，使用相同的方式开发一个C/C++代码模板，最后使用模板引擎进行渲染出来完整的代码。因为计划使用python进行模板渲染，所以就调研了python的模板引擎，比较之后发现jinja2的使用文档较全面而且也比较轻量级，所以就使用它进行代码的模板渲染。</p>
+    <title>Sublime新版本提示</title>
+    <url>/2017/04/07/article7/</url>
+    <content><![CDATA[<p>使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。</p>
+<p>使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦</p>
+<pre><code>&quot;a new version of sublime text is available, download now?&quot;
+</code></pre>
 <span id="more"></span>
 
-<h2 id="Jinja2的介绍和使用"><a href="#Jinja2的介绍和使用" class="headerlink" title="Jinja2的介绍和使用"></a>Jinja2的介绍和使用</h2><p>主要参考Jinja2的<a href="http://docs.jinkan.org/docs/jinja2/">中文使用文档</a>。<br>安装</p>
-<pre><code>pip install jinja2
-</code></pre>
-<p>模板，我主要使用的一个是变量替换，一个是for循环（这个自己定义占位符完全搞不定）。</p>
-<pre><code>#include &lt;iostream&gt;
-
-int main() &#123;
-&#123;%for item in items%&#125;
-    &#123;&#123;item.type&#125;&#125; &#123;&#123;item.name&#125;&#125;;
-&#123;%endfor%&#125;
-    return 0;
+<p>去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。</p>
+<pre><code>&#123;
+    ......
+    &quot;update_check&quot;: false,
+    ......
 &#125;
 </code></pre>
-<p>python使用代码，我用的最简单的使用方式</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
-
-<span class="token keyword">import</span> sys
-<span class="token keyword">from</span> jinja2 <span class="token keyword">import</span> Template
-
-<span class="token keyword">class</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">pass</span>
-
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">:</span>
-        template <span class="token operator">=</span> Template<span class="token punctuation">(</span>fin<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        item1 <span class="token operator">=</span> Item<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        item1<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">"name1"</span>
-        item1<span class="token punctuation">.</span>type<span class="token operator">=</span><span class="token string">"int"</span>
-        items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item1<span class="token punctuation">)</span>
-        item2 <span class="token operator">=</span> Item<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        item2<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">"name2"</span>
-        item2<span class="token punctuation">.</span>type<span class="token operator">=</span><span class="token string">"float"</span>
-        items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item2<span class="token punctuation">)</span>
-        content <span class="token operator">=</span> template<span class="token punctuation">.</span>render<span class="token punctuation">(</span>items<span class="token operator">=</span>items<span class="token punctuation">)</span>
-        <span class="token keyword">print</span> content
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>替换之后的效果，就是一个可以编译的C++的代码。</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> name1<span class="token punctuation">;</span>
-
-    <span class="token keyword">float</span> name2<span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
-        <category>python</category>
+        <category>编辑器</category>
       </categories>
       <tags>
-        <tag>python</tag>
+        <tag>编辑器</tag>
       </tags>
   </entry>
   <entry>
@@ -496,27 +451,72 @@ typedef struct
       </tags>
   </entry>
   <entry>
-    <title>Sublime新版本提示</title>
-    <url>/2017/04/07/article7/</url>
-    <content><![CDATA[<p>使用Sublime已经有一段时间了，从st2到st3用下来感觉非常不错，应该是除了vim之外我最喜欢的编辑器了。</p>
-<p>使用了st3一段时间之后，每次打开软件，总是会遇到如下提示，感觉很烦</p>
-<pre><code>&quot;a new version of sublime text is available, download now?&quot;
-</code></pre>
+    <title>Python模版引擎Jinja2</title>
+    <url>/2017/03/24/article6/</url>
+    <content><![CDATA[<h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>最近在调研开发一个BS服务框架，需要能够根据protobuf文件以及配置文件能够自动生成相关的代码，代码注册之后可以直接编译得到一个直接支持一种数据流的BS服务模块。即实现一个可以根据数据格式定制化的BS服务框架。因为要自动生成的代码有很多，如果使用python直接把这些代码打印出来，那工作将完全无法开展，并且生成代码的格式不好控制。</p>
+<p>根据之前模板渲染的开发经验，完全可以像开发html模板一样，使用相同的方式开发一个C/C++代码模板，最后使用模板引擎进行渲染出来完整的代码。因为计划使用python进行模板渲染，所以就调研了python的模板引擎，比较之后发现jinja2的使用文档较全面而且也比较轻量级，所以就使用它进行代码的模板渲染。</p>
 <span id="more"></span>
 
-<p>去除这个提示的办法如下，在Sublime的Preferences-&gt;Settings-&gt;User里面添加如下一行即可。</p>
-<pre><code>&#123;
-    ......
-    &quot;update_check&quot;: false,
-    ......
+<h2 id="Jinja2的介绍和使用"><a href="#Jinja2的介绍和使用" class="headerlink" title="Jinja2的介绍和使用"></a>Jinja2的介绍和使用</h2><p>主要参考Jinja2的<a href="http://docs.jinkan.org/docs/jinja2/">中文使用文档</a>。<br>安装</p>
+<pre><code>pip install jinja2
+</code></pre>
+<p>模板，我主要使用的一个是变量替换，一个是for循环（这个自己定义占位符完全搞不定）。</p>
+<pre><code>#include &lt;iostream&gt;
+
+int main() &#123;
+&#123;%for item in items%&#125;
+    &#123;&#123;item.type&#125;&#125; &#123;&#123;item.name&#125;&#125;;
+&#123;%endfor%&#125;
+    return 0;
 &#125;
 </code></pre>
+<p>python使用代码，我用的最简单的使用方式</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
+
+<span class="token keyword">import</span> sys
+<span class="token keyword">from</span> jinja2 <span class="token keyword">import</span> Template
+
+<span class="token keyword">class</span> <span class="token class-name">Item</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">:</span>
+        template <span class="token operator">=</span> Template<span class="token punctuation">(</span>fin<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        item1 <span class="token operator">=</span> Item<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        item1<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">"name1"</span>
+        item1<span class="token punctuation">.</span>type<span class="token operator">=</span><span class="token string">"int"</span>
+        items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item1<span class="token punctuation">)</span>
+        item2 <span class="token operator">=</span> Item<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        item2<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">"name2"</span>
+        item2<span class="token punctuation">.</span>type<span class="token operator">=</span><span class="token string">"float"</span>
+        items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item2<span class="token punctuation">)</span>
+        content <span class="token operator">=</span> template<span class="token punctuation">.</span>render<span class="token punctuation">(</span>items<span class="token operator">=</span>items<span class="token punctuation">)</span>
+        <span class="token keyword">print</span> content
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>替换之后的效果，就是一个可以编译的C++的代码。</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> name1<span class="token punctuation">;</span>
+
+    <span class="token keyword">float</span> name2<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
-        <category>编辑器</category>
+        <category>python</category>
       </categories>
       <tags>
-        <tag>编辑器</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -710,6 +710,18 @@ dt<span class="token operator">=</span><span class="token punctuation">$(</span>
       </tags>
   </entry>
   <entry>
+    <title>借助GitHub Pages创建新的博客的一点感悟</title>
+    <url>/2017/03/18/%E5%80%9F%E5%8A%A9GitHub-Pages%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="借助GitHub-Pages重新搭建博客一点感悟"><a href="#借助GitHub-Pages重新搭建博客一点感悟" class="headerlink" title="借助GitHub Pages重新搭建博客一点感悟"></a>借助GitHub Pages重新搭建博客一点感悟</h2><h3 id="开始想写博客"><a href="#开始想写博客" class="headerlink" title="开始想写博客"></a>开始想写博客</h3><p>一开始自己想写博客，当时第一反应是去csdn上创建个人博客。</p>
+<h3 id="自己维护博客系统"><a href="#自己维护博客系统" class="headerlink" title="自己维护博客系统"></a>自己维护博客系统</h3><p>工作之后，发现在csdn上写博客不如自己搞一个博客系统来玩玩，而且还能使用自己的域名，感觉应该很高大上。<br>于是采取行动，先在aws上申请了一台使用期限为一年的机器，接着申请了自己的域名，然后网上查找相关的博客搭建工具。最后比来比去，结合自己喜欢的语言，选择了用django搭建自己的博客系统，然后使用markdown写文章。<br>这套系统，自己花了钱，当然更多的是用了很多精力在上面，所以搭建起来之后，自己在上面写了一些文章，也对系统做了一些小的优化，但是总体感觉就是，自己去维护这一套系统的代价很大。</p>
+<span id="more"></span>
+
+<h3 id="迁回CSDN"><a href="#迁回CSDN" class="headerlink" title="迁回CSDN"></a>迁回CSDN</h3><p>后来机器免费时间到期之后，自己又想迁回到现成的一些博客网站，当时比较喜欢的是cnblogs和csdn两个网站，但由于csdn对markdown编写支持的更好一些，所以我的选择还是csdn。这样自己维护的代价变小了，但是也少了很多乐趣，比如之前申请的域名无法使用了。</p>
+<h3 id="借助Github-Pages重新搭建"><a href="#借助Github-Pages重新搭建" class="headerlink" title="借助Github Pages重新搭建"></a>借助Github Pages重新搭建</h3><p>后来，又了解到GitHub Pages可以用来创建网站，而且可以使用自己的域名，并且维护的代价不是特别大。所以就决心尝试一下。多谢下面参考地址的那位同学的详细步骤，博客初步搭建起来。现在刚开始使用，感觉还是挺喜欢的，希望以后有更多的优点能让我长时间使用下去。^-^</p>
+<p><a href="http://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">参考地址</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>海外机器vim配置，支持C++和golang的代码补全和跳转</title>
     <url>/2018/10/20/vim-config/</url>
     <content><![CDATA[<p>想要配置一套支持golang和c++代码提示和自动补全的vim环境，一直以来都有一点问题，不是youcompleteme安装有问题，就是vim-go安装的不够完整。最近买了一台国外的vps，安装这些工具遇到的问题相对就比较好解决。注意：系统环境使用centos7以上。<br>简单列一下需要安装的工具：</p>
@@ -813,17 +825,5 @@ set tags+=./tags,/usr/include/tags
       <tags>
         <tag>vim</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>借助GitHub Pages创建新的博客的一点感悟</title>
-    <url>/2017/03/18/%E5%80%9F%E5%8A%A9GitHub-Pages%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="借助GitHub-Pages重新搭建博客一点感悟"><a href="#借助GitHub-Pages重新搭建博客一点感悟" class="headerlink" title="借助GitHub Pages重新搭建博客一点感悟"></a>借助GitHub Pages重新搭建博客一点感悟</h2><h3 id="开始想写博客"><a href="#开始想写博客" class="headerlink" title="开始想写博客"></a>开始想写博客</h3><p>一开始自己想写博客，当时第一反应是去csdn上创建个人博客。</p>
-<h3 id="自己维护博客系统"><a href="#自己维护博客系统" class="headerlink" title="自己维护博客系统"></a>自己维护博客系统</h3><p>工作之后，发现在csdn上写博客不如自己搞一个博客系统来玩玩，而且还能使用自己的域名，感觉应该很高大上。<br>于是采取行动，先在aws上申请了一台使用期限为一年的机器，接着申请了自己的域名，然后网上查找相关的博客搭建工具。最后比来比去，结合自己喜欢的语言，选择了用django搭建自己的博客系统，然后使用markdown写文章。<br>这套系统，自己花了钱，当然更多的是用了很多精力在上面，所以搭建起来之后，自己在上面写了一些文章，也对系统做了一些小的优化，但是总体感觉就是，自己去维护这一套系统的代价很大。</p>
-<span id="more"></span>
-
-<h3 id="迁回CSDN"><a href="#迁回CSDN" class="headerlink" title="迁回CSDN"></a>迁回CSDN</h3><p>后来机器免费时间到期之后，自己又想迁回到现成的一些博客网站，当时比较喜欢的是cnblogs和csdn两个网站，但由于csdn对markdown编写支持的更好一些，所以我的选择还是csdn。这样自己维护的代价变小了，但是也少了很多乐趣，比如之前申请的域名无法使用了。</p>
-<h3 id="借助Github-Pages重新搭建"><a href="#借助Github-Pages重新搭建" class="headerlink" title="借助Github Pages重新搭建"></a>借助Github Pages重新搭建</h3><p>后来，又了解到GitHub Pages可以用来创建网站，而且可以使用自己的域名，并且维护的代价不是特别大。所以就决心尝试一下。多谢下面参考地址的那位同学的详细步骤，博客初步搭建起来。现在刚开始使用，感觉还是挺喜欢的，希望以后有更多的优点能让我长时间使用下去。^-^</p>
-<p><a href="http://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">参考地址</a></p>
-]]></content>
   </entry>
 </search>
