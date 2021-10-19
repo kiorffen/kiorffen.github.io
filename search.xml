@@ -586,6 +586,48 @@ int main() &#123;
       </tags>
   </entry>
   <entry>
+    <title>一个删除旧文件的shell脚本（非常好用）</title>
+    <url>/2018/12/07/old-file-delete/</url>
+    <content><![CDATA[<p> 一个删除旧文件的shell脚本（非常好用）</p>
+<p>对于后端开发同学来说，一些服务会不可避免的产生一些输出文件，这些文件随着时间积累会越来越多，我们常常需要按照某个时间定期的清理掉之前的文件，比如5天之前的旧文件。这里的脚本就是为了解决这个问题，非常好用。</p>
+<span id="more"></span>
+
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+days<span class="token operator">=</span>5 <span class="token comment" spellcheck="true">#配置时间</span>
+
+dt<span class="token operator">=</span><span class="token punctuation">$(</span>date -d <span class="token string">"- <span class="token variable">$days</span> day"</span> <span class="token string">"+%Y%m%d%H%M%S"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> -d old-file <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">mkdir</span> old-file
+<span class="token keyword">fi</span>
+
+<span class="token function">ls</span> <span class="token operator">></span> temp.$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;dt&amp;#125;</span>
+<span class="token keyword">while</span> <span class="token function">read</span> line<span class="token punctuation">;</span> <span class="token keyword">do</span>
+    file<span class="token operator">=</span><span class="token variable">$line</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$file</span>"</span>x <span class="token operator">==</span> <span class="token string">"old-file"</span>x <span class="token operator">||</span> <span class="token string">"<span class="token variable">$file</span>"</span>x <span class="token operator">==</span> <span class="token string">"old_file.sh"</span>x <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token keyword">continue</span>
+    <span class="token keyword">fi</span>
+    ftime<span class="token operator">=</span><span class="token punctuation">$(</span>stat <span class="token string">"<span class="token variable">$file</span>"</span><span class="token operator">|</span><span class="token function">grep</span> -i Modify <span class="token operator">|</span> <span class="token function">awk</span> -F. <span class="token string">'&amp;#123;print <span class="token variable">$1</span>&amp;#125;'</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&amp;#123;print <span class="token variable">$2</span><span class="token variable">$3</span>&amp;#125;'</span><span class="token operator">|</span> <span class="token function">awk</span> -F- <span class="token string">'&amp;#123;print <span class="token variable">$1</span><span class="token variable">$2</span><span class="token variable">$3</span>&amp;#125;'</span> <span class="token operator">|</span> <span class="token function">awk</span> -F: <span class="token string">'&amp;#123;print <span class="token variable">$1</span><span class="token variable">$2</span><span class="token variable">$3</span>&amp;#125;'</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$ftime</span>"</span> <span class="token operator">&lt;</span> <span class="token string">"<span class="token variable">$dt</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token keyword">echo</span> <span class="token string">"file:"</span><span class="token variable">$file</span><span class="token string">" time:<span class="token variable">$ftime</span> has moved to old-file"</span>
+        <span class="token function">mv</span> <span class="token string">"<span class="token variable">$file</span>"</span> old-file/
+    <span class="token keyword">fi</span>
+<span class="token keyword">done</span> <span class="token operator">&lt;</span> temp.$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;dt&amp;#125;</span>
+
+<span class="token function">rm</span> temp.$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;dt&amp;#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意</strong><br>上面的脚本会把要删除的文件，移动到一个old-file的文件夹，不会真正的删除，如果需要彻底删除的话，请在脚本执行完之后执行rm -rf old-file即可。</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于Python的CGIHTTPServer简单的交互实现</title>
     <url>/2017/07/04/article9/</url>
     <content><![CDATA[<h1 id="基于Python的CGIHTTPServer简单的交互实现"><a href="#基于Python的CGIHTTPServer简单的交互实现" class="headerlink" title="基于Python的CGIHTTPServer简单的交互实现"></a>基于Python的CGIHTTPServer简单的交互实现</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。</p>
@@ -665,48 +707,6 @@ c_length<span class="token operator">=</span>0
       </categories>
       <tags>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一个删除旧文件的shell脚本（非常好用）</title>
-    <url>/2018/12/07/old-file-delete/</url>
-    <content><![CDATA[<p> 一个删除旧文件的shell脚本（非常好用）</p>
-<p>对于后端开发同学来说，一些服务会不可避免的产生一些输出文件，这些文件随着时间积累会越来越多，我们常常需要按照某个时间定期的清理掉之前的文件，比如5天之前的旧文件。这里的脚本就是为了解决这个问题，非常好用。</p>
-<span id="more"></span>
-
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-days<span class="token operator">=</span>5 <span class="token comment" spellcheck="true">#配置时间</span>
-
-dt<span class="token operator">=</span><span class="token punctuation">$(</span>date -d <span class="token string">"- <span class="token variable">$days</span> day"</span> <span class="token string">"+%Y%m%d%H%M%S"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token operator">!</span> -d old-file <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token function">mkdir</span> old-file
-<span class="token keyword">fi</span>
-
-<span class="token function">ls</span> <span class="token operator">></span> temp.$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;dt&amp;#125;</span>
-<span class="token keyword">while</span> <span class="token function">read</span> line<span class="token punctuation">;</span> <span class="token keyword">do</span>
-    file<span class="token operator">=</span><span class="token variable">$line</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$file</span>"</span>x <span class="token operator">==</span> <span class="token string">"old-file"</span>x <span class="token operator">||</span> <span class="token string">"<span class="token variable">$file</span>"</span>x <span class="token operator">==</span> <span class="token string">"old_file.sh"</span>x <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token keyword">continue</span>
-    <span class="token keyword">fi</span>
-    ftime<span class="token operator">=</span><span class="token punctuation">$(</span>stat <span class="token string">"<span class="token variable">$file</span>"</span><span class="token operator">|</span><span class="token function">grep</span> -i Modify <span class="token operator">|</span> <span class="token function">awk</span> -F. <span class="token string">'&amp;#123;print <span class="token variable">$1</span>&amp;#125;'</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&amp;#123;print <span class="token variable">$2</span><span class="token variable">$3</span>&amp;#125;'</span><span class="token operator">|</span> <span class="token function">awk</span> -F- <span class="token string">'&amp;#123;print <span class="token variable">$1</span><span class="token variable">$2</span><span class="token variable">$3</span>&amp;#125;'</span> <span class="token operator">|</span> <span class="token function">awk</span> -F: <span class="token string">'&amp;#123;print <span class="token variable">$1</span><span class="token variable">$2</span><span class="token variable">$3</span>&amp;#125;'</span><span class="token punctuation">)</span>
-    
-    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$ftime</span>"</span> <span class="token operator">&lt;</span> <span class="token string">"<span class="token variable">$dt</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token keyword">echo</span> <span class="token string">"file:"</span><span class="token variable">$file</span><span class="token string">" time:<span class="token variable">$ftime</span> has moved to old-file"</span>
-        <span class="token function">mv</span> <span class="token string">"<span class="token variable">$file</span>"</span> old-file/
-    <span class="token keyword">fi</span>
-<span class="token keyword">done</span> <span class="token operator">&lt;</span> temp.$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;dt&amp;#125;</span>
-
-<span class="token function">rm</span> temp.$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;dt&amp;#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>注意</strong><br>上面的脚本会把要删除的文件，移动到一个old-file的文件夹，不会真正的删除，如果需要彻底删除的话，请在脚本执行完之后执行rm -rf old-file即可。</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>shell</tag>
       </tags>
   </entry>
   <entry>
