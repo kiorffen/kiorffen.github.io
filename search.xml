@@ -117,46 +117,6 @@
       </tags>
   </entry>
   <entry>
-    <title>服务器后端文件转码</title>
-    <url>/2017/03/20/article2/</url>
-    <content><![CDATA[<h2 id="文件转码"><a href="#文件转码" class="headerlink" title="文件转码"></a>文件转码</h2><p>工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。</p>
-<span id="more"></span>
-
-<h3 id="方法1：linux的iconv转码命令"><a href="#方法1：linux的iconv转码命令" class="headerlink" title="方法1：linux的iconv转码命令"></a>方法1：linux的iconv转码命令</h3><p>例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">iconv</span> -f UTF-8 -t GBK input_file<span class="token punctuation">(</span>原编码文件<span class="token punctuation">)</span> -o output_file<span class="token punctuation">(</span>目标编码文件<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这个命令使用起来非常方便，但是也经常对一些特殊字符转化无能为力，导致文件转码失败。如果我们可以忽略那些特殊字符，只需要整个文件转码完成，则可以使用方法二。</p>
-<h3 id="方法2：使用一个简单python脚本"><a href="#方法2：使用一个简单python脚本" class="headerlink" title="方法2：使用一个简单python脚本"></a>方法2：使用一个简单python脚本</h3><p>代码如下，核心代码就一行。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
-
-<span class="token keyword">import</span> sys
-
-<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    output <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
-
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">,</span> open<span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fout<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fin<span class="token punctuation">:</span>
-            line <span class="token operator">=</span> line<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
-            fout<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>脚本的使用方式很简单。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">python iconv.py input output
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这两个方法都不复杂，个人一般先使用方法1，如果失败的话再使用方法2。</p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>服务器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>阿里云机器安装Tensorflow和Paddlepaddle</title>
     <url>/2017/11/03/article10/</url>
     <content><![CDATA[<h3 id="阿里云机器安装tensorflow和paddlepaddle"><a href="#阿里云机器安装tensorflow和paddlepaddle" class="headerlink" title="阿里云机器安装tensorflow和paddlepaddle"></a>阿里云机器安装tensorflow和paddlepaddle</h3><p>准备用自己1核1G的阿里云机器学习一下深度学习知识，工欲善其事，必先利其器，话不多说，下面开始安装。</p>
@@ -215,6 +175,46 @@ soource deactivate //退出虚拟环境
       </categories>
       <tags>
         <tag>ML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器后端文件转码</title>
+    <url>/2017/03/20/article2/</url>
+    <content><![CDATA[<h2 id="文件转码"><a href="#文件转码" class="headerlink" title="文件转码"></a>文件转码</h2><p>工作中经常遇到的问题之一，就是一个转码问题，这主要的坑爹原因是公司的前端都使用utf8编码，后端一般则是使用gbk编码。对于代码中的编码转化一般是使用公司现成的api，这里就不具体介绍了。下面要说的是在做数据分析时，对文件编码进行转换的解决方法。个人主要使用如下两种方法。</p>
+<span id="more"></span>
+
+<h3 id="方法1：linux的iconv转码命令"><a href="#方法1：linux的iconv转码命令" class="headerlink" title="方法1：linux的iconv转码命令"></a>方法1：linux的iconv转码命令</h3><p>例如对于一个utf8编码的文件想要转化为gbk，通常的做法如下：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">iconv</span> -f UTF-8 -t GBK input_file<span class="token punctuation">(</span>原编码文件<span class="token punctuation">)</span> -o output_file<span class="token punctuation">(</span>目标编码文件<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这个命令使用起来非常方便，但是也经常对一些特殊字符转化无能为力，导致文件转码失败。如果我们可以忽略那些特殊字符，只需要整个文件转码完成，则可以使用方法二。</p>
+<h3 id="方法2：使用一个简单python脚本"><a href="#方法2：使用一个简单python脚本" class="headerlink" title="方法2：使用一个简单python脚本"></a>方法2：使用一个简单python脚本</h3><p>代码如下，核心代码就一行。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
+
+<span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    input <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    output <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span>input<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fin<span class="token punctuation">,</span> open<span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fout<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> line <span class="token keyword">in</span> fin<span class="token punctuation">:</span>
+            line <span class="token operator">=</span> line<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
+            fout<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>脚本的使用方式很简单。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">python iconv.py input output
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这两个方法都不复杂，个人一般先使用方法1，如果失败的话再使用方法2。</p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -710,15 +710,18 @@ dt<span class="token operator">=</span><span class="token punctuation">$(</span>
       </tags>
   </entry>
   <entry>
-    <title>借助GitHub Pages创建新的博客的一点感悟</title>
-    <url>/2017/03/18/%E5%80%9F%E5%8A%A9GitHub-Pages%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="借助GitHub-Pages重新搭建博客一点感悟"><a href="#借助GitHub-Pages重新搭建博客一点感悟" class="headerlink" title="借助GitHub Pages重新搭建博客一点感悟"></a>借助GitHub Pages重新搭建博客一点感悟</h2><h3 id="开始想写博客"><a href="#开始想写博客" class="headerlink" title="开始想写博客"></a>开始想写博客</h3><p>一开始自己想写博客，当时第一反应是去csdn上创建个人博客。</p>
-<h3 id="自己维护博客系统"><a href="#自己维护博客系统" class="headerlink" title="自己维护博客系统"></a>自己维护博客系统</h3><p>工作之后，发现在csdn上写博客不如自己搞一个博客系统来玩玩，而且还能使用自己的域名，感觉应该很高大上。<br>于是采取行动，先在aws上申请了一台使用期限为一年的机器，接着申请了自己的域名，然后网上查找相关的博客搭建工具。最后比来比去，结合自己喜欢的语言，选择了用django搭建自己的博客系统，然后使用markdown写文章。<br>这套系统，自己花了钱，当然更多的是用了很多精力在上面，所以搭建起来之后，自己在上面写了一些文章，也对系统做了一些小的优化，但是总体感觉就是，自己去维护这一套系统的代价很大。</p>
+    <title>把博客环境从阿里云开发机迁移到mac本地环境记录</title>
+    <url>/2021/10/19/update-env-to-mac/</url>
+    <content><![CDATA[<p>因为在阿里云开发机都是使用vim进行markdown文件的编辑，整体的一个体验非常不方面，还有就是云服务器感觉后面应该不会在继续使用了，早点把相关资料迁移走。</p>
+<p>迁移过程按照我之前的文档进行操作，不过还是发现了一些问题。</p>
 <span id="more"></span>
 
-<h3 id="迁回CSDN"><a href="#迁回CSDN" class="headerlink" title="迁回CSDN"></a>迁回CSDN</h3><p>后来机器免费时间到期之后，自己又想迁回到现成的一些博客网站，当时比较喜欢的是cnblogs和csdn两个网站，但由于csdn对markdown编写支持的更好一些，所以我的选择还是csdn。这样自己维护的代价变小了，但是也少了很多乐趣，比如之前申请的域名无法使用了。</p>
-<h3 id="借助Github-Pages重新搭建"><a href="#借助Github-Pages重新搭建" class="headerlink" title="借助Github Pages重新搭建"></a>借助Github Pages重新搭建</h3><p>后来，又了解到GitHub Pages可以用来创建网站，而且可以使用自己的域名，并且维护的代价不是特别大。所以就决心尝试一下。多谢下面参考地址的那位同学的详细步骤，博客初步搭建起来。现在刚开始使用，感觉还是挺喜欢的，希望以后有更多的优点能让我长时间使用下去。^-^</p>
-<p><a href="http://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">参考地址</a></p>
+<ul>
+<li>node相关依赖版本过低，需要先通过ncu查看可以升级的版本，然后通过ncu -u进行升级。</li>
+<li>之前按照教程操作之后重新生成资源文件，发现文档打不开，这个主要是因为next主题版本比较老旧，可以按照github教程直接进行升级（升级之前最好做一下备份）。</li>
+<li>文档的图片没有办法正常展示，我之前的图片是用的是七牛云做图床，只开启了http访问，网上查了一些资料感觉都不是很方便，根据我的情况最简单的办法就是直接在七牛上面生成免费证书，有效期是一年，生成之后图片就可以正常访问了。</li>
+</ul>
+<p>上面的几个问题其实都比较简单，但是很长时间不更新了，所以还要重新查解决办法，浪费了比较多的时间，所以记录一下。</p>
 ]]></content>
   </entry>
   <entry>
@@ -825,5 +828,17 @@ set tags+=./tags,/usr/include/tags
       <tags>
         <tag>vim</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>借助GitHub Pages创建新的博客的一点感悟</title>
+    <url>/2017/03/18/%E5%80%9F%E5%8A%A9GitHub-Pages%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="借助GitHub-Pages重新搭建博客一点感悟"><a href="#借助GitHub-Pages重新搭建博客一点感悟" class="headerlink" title="借助GitHub Pages重新搭建博客一点感悟"></a>借助GitHub Pages重新搭建博客一点感悟</h2><h3 id="开始想写博客"><a href="#开始想写博客" class="headerlink" title="开始想写博客"></a>开始想写博客</h3><p>一开始自己想写博客，当时第一反应是去csdn上创建个人博客。</p>
+<h3 id="自己维护博客系统"><a href="#自己维护博客系统" class="headerlink" title="自己维护博客系统"></a>自己维护博客系统</h3><p>工作之后，发现在csdn上写博客不如自己搞一个博客系统来玩玩，而且还能使用自己的域名，感觉应该很高大上。<br>于是采取行动，先在aws上申请了一台使用期限为一年的机器，接着申请了自己的域名，然后网上查找相关的博客搭建工具。最后比来比去，结合自己喜欢的语言，选择了用django搭建自己的博客系统，然后使用markdown写文章。<br>这套系统，自己花了钱，当然更多的是用了很多精力在上面，所以搭建起来之后，自己在上面写了一些文章，也对系统做了一些小的优化，但是总体感觉就是，自己去维护这一套系统的代价很大。</p>
+<span id="more"></span>
+
+<h3 id="迁回CSDN"><a href="#迁回CSDN" class="headerlink" title="迁回CSDN"></a>迁回CSDN</h3><p>后来机器免费时间到期之后，自己又想迁回到现成的一些博客网站，当时比较喜欢的是cnblogs和csdn两个网站，但由于csdn对markdown编写支持的更好一些，所以我的选择还是csdn。这样自己维护的代价变小了，但是也少了很多乐趣，比如之前申请的域名无法使用了。</p>
+<h3 id="借助Github-Pages重新搭建"><a href="#借助Github-Pages重新搭建" class="headerlink" title="借助Github Pages重新搭建"></a>借助Github Pages重新搭建</h3><p>后来，又了解到GitHub Pages可以用来创建网站，而且可以使用自己的域名，并且维护的代价不是特别大。所以就决心尝试一下。多谢下面参考地址的那位同学的详细步骤，博客初步搭建起来。现在刚开始使用，感觉还是挺喜欢的，希望以后有更多的优点能让我长时间使用下去。^-^</p>
+<p><a href="http://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">参考地址</a></p>
+]]></content>
   </entry>
 </search>
