@@ -28,7 +28,7 @@
 <meta property="og:description" content="因为在阿里云开发机都是使用vim进行markdown文件的编辑，整体的一个体验非常不方面，还有就是云服务器感觉后面应该不会在继续使用了，早点把相关资料迁移走。 迁移过程按照我之前的文档进行操作，不过还是发现了一些问题。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-10-19T09:53:50.000Z">
-<meta property="article:modified_time" content="2021-10-19T10:39:10.802Z">
+<meta property="article:modified_time" content="2021-10-20T03:19:01.075Z">
 <meta property="article:author" content="Kiorffen">
 <meta name="twitter:card" content="summary">
 
@@ -193,10 +193,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-10-19 17:53:50 / Modified: 18:39:10" itemprop="dateCreated datePublished" datetime="2021-10-19T17:53:50+08:00">2021-10-19</time>
+              <time title="Created: 2021-10-19 17:53:50" itemprop="dateCreated datePublished" datetime="2021-10-19T17:53:50+08:00">2021-10-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-20 11:19:01" itemprop="dateModified" datetime="2021-10-20T11:19:01+08:00">2021-10-20</time>
+              </span>
 
           
             <span id="/2021/10/19/update-env-to-mac/" class="post-meta-item leancloud_visitors" data-flag-title="把博客环境从阿里云开发机迁移到mac本地环境记录" title="Views">
@@ -236,8 +242,10 @@
 
 <ul>
 <li>node相关依赖版本过低，需要先通过ncu查看可以升级的版本，然后通过ncu -u进行升级。</li>
+<li>hexo g生成html文件时报了warn，这些warn应该是没什么影响，如果想解决的话，可以将node的版本进行降级，我从16降级到12的版本之后，warn就不见了。</li>
 <li>之前按照教程操作之后重新生成资源文件，发现文档打不开，这个主要是因为next主题版本比较老旧，可以按照github教程直接进行升级（升级之前最好做一下备份）。</li>
 <li>文档的图片没有办法正常展示，我之前的图片是用的是七牛云做图床，只开启了http访问，网上查了一些资料感觉都不是很方便，根据我的情况最简单的办法就是直接在七牛上面生成免费证书，有效期是一年，生成之后图片就可以正常访问了。</li>
+<li>文章计数不能正常显示，将security设置为false。</li>
 </ul>
 <p>上面的几个问题其实都比较简单，但是很长时间不更新了，所以还要重新查解决办法，浪费了比较多的时间，所以记录一下。</p>
 
