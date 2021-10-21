@@ -843,4 +843,16 @@ set tags+=./tags,/usr/include/tags
 <p><a href="http://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">参考地址</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>最佳的自建博客编辑软件-包含上传图片</title>
+    <url>/2021/10/21/%E6%9C%80%E4%BD%B3%E7%9A%84%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6-%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/</url>
+    <content><![CDATA[<p>把博客更新从开发机迁移到了本地mac环境，发现真的太香了，给我这个老古董好好上了一课。</p>
+<p>现在本地环境使用vscode，编写md文件可以一边写一边预览非常方便。</p>
+<p>当然给我带来更大震撼的是vs可以直接上传图片到七牛图床，配置我参考的是<a href="https://zhuanlan.zhihu.com/p/163826941">VSCode+PicGo插件配置</a>，具体的步骤简单总结一下。</p>
+<p>最后用我的一个头像进行测试一下，效果真的非常nice。</p>
+<span id="more"></span>
+
+<p><img src="https://cdn.tanghaiyu.com/p2.jpeg" alt="p2"></p>
+]]></content>
+  </entry>
 </search>
