@@ -852,7 +852,6 @@ set tags+=./tags,/usr/include/tags
 <p>最后用我的一个头像进行测试一下，效果真的非常nice。</p>
 <span id="more"></span>
 
-<p><img src="https://cdn.tanghaiyu.com/p2.jpeg" alt="p2"></p>
-]]></content>
+<img src="https://cdn.tanghaiyu.com/p2.jpeg" width="50%" height="50%">]]></content>
   </entry>
 </search>
