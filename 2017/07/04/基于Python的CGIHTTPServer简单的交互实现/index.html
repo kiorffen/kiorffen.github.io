@@ -23,19 +23,19 @@
   <meta name="description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。 但是我个人更喜欢一个更简单的做法：就是利用pyth">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于Python的CGIHTTPServer简单的交互实现">
-<meta property="og:url" content="http://tanghaiyu.com/2017/07/04/article9/index.html">
+<meta property="og:url" content="http://tanghaiyu.com/2017/07/04/%E5%9F%BA%E4%BA%8EPython%E7%9A%84CGIHTTPServer%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Tang Haiyu Blog">
 <meta property="og:description" content="基于Python的CGIHTTPServer简单的交互实现介绍对于服务器后端开发者而言，有时候需要把自己的一些服务直接暴露给PM或者其他RD使用，这个时候需要搭建一套web服务可以和前端用户做简单交互，按照最常规的做法，一般是用Apache或者Nginx作为webserver后端使用cgi或者fcgi程序或者脚本进行处理，当然这种做法安全且正规。 但是我个人更喜欢一个更简单的做法：就是利用pyth">
 <meta property="og:locale">
 <meta property="og:image" content="http://cdn.tanghaiyu.com/python-cgi.jpg">
 <meta property="article:published_time" content="2017-07-04T05:06:41.000Z">
-<meta property="article:modified_time" content="2021-10-15T02:49:49.899Z">
+<meta property="article:modified_time" content="2021-10-21T12:52:13.987Z">
 <meta property="article:author" content="Kiorffen">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://cdn.tanghaiyu.com/python-cgi.jpg">
 
-<link rel="canonical" href="http://tanghaiyu.com/2017/07/04/article9/">
+<link rel="canonical" href="http://tanghaiyu.com/2017/07/04/%E5%9F%BA%E4%BA%8EPython%E7%9A%84CGIHTTPServer%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AE%9E%E7%8E%B0/">
 
 
 <script id="page-configurations">
@@ -174,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2017/07/04/article9/">
+    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2017/07/04/%E5%9F%BA%E4%BA%8EPython%E7%9A%84CGIHTTPServer%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://cdn.tanghaiyu.com/touxiang.jpeg">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-15 10:49:49" itemprop="dateModified" datetime="2021-10-15T10:49:49+08:00">2021-10-15</time>
+                <time title="Modified: 2021-10-21 20:52:13" itemprop="dateModified" datetime="2021-10-21T20:52:13+08:00">2021-10-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,7 +217,7 @@
             </span>
 
           
-            <span id="/2017/07/04/article9/" class="post-meta-item leancloud_visitors" data-flag-title="基于Python的CGIHTTPServer简单的交互实现" title="Views">
+            <span id="/2017/07/04/%E5%9F%BA%E4%BA%8EPython%E7%9A%84CGIHTTPServer%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AE%9E%E7%8E%B0/" class="post-meta-item leancloud_visitors" data-flag-title="基于Python的CGIHTTPServer简单的交互实现" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -232,8 +232,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2017/07/04/article9/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/07/04/article9/" itemprop="commentCount"></span>
+    <a title="valine" href="/2017/07/04/%E5%9F%BA%E4%BA%8EPython%E7%9A%84CGIHTTPServer%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AE%9E%E7%8E%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/07/04/%E5%9F%BA%E4%BA%8EPython%E7%9A%84CGIHTTPServer%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E4%BA%92%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -337,11 +337,11 @@ c_length<span class="token operator">=</span>0
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2017/06/30/article8/" rel="prev" title="Python正则使用示例">
+    <a href="/2017/06/30/Python%E6%AD%A3%E5%88%99%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" rel="prev" title="Python正则使用示例">
       <i class="fa fa-chevron-left"></i> Python正则使用示例
     </a></div>
       <div class="post-nav-item">
-    <a href="/2017/11/03/article10/" rel="next" title="阿里云机器安装Tensorflow和Paddlepaddle">
+    <a href="/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/" rel="next" title="阿里云机器安装Tensorflow和Paddlepaddle">
       阿里云机器安装Tensorflow和Paddlepaddle <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>

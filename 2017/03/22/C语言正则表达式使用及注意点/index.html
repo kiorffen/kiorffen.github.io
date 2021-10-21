@@ -23,17 +23,17 @@
   <meta name="description" content="C语言正则表达式使用及注意点正则表达式作为程序员必备的高效率技能之一，程序开发中不可避免的就会用到，最近在开发中就需要使用C语言的正则表达式来解决一些问题。吐槽一句（gcc版本太低，用不了C++11的特性，也就用不了c++的regex）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言正则表达式使用及注意点">
-<meta property="og:url" content="http://tanghaiyu.com/2017/03/22/article5-md/index.html">
+<meta property="og:url" content="http://tanghaiyu.com/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/index.html">
 <meta property="og:site_name" content="Tang Haiyu Blog">
 <meta property="og:description" content="C语言正则表达式使用及注意点正则表达式作为程序员必备的高效率技能之一，程序开发中不可避免的就会用到，最近在开发中就需要使用C语言的正则表达式来解决一些问题。吐槽一句（gcc版本太低，用不了C++11的特性，也就用不了c++的regex）。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2017-03-22T08:17:41.000Z">
-<meta property="article:modified_time" content="2021-10-15T02:49:49.898Z">
+<meta property="article:modified_time" content="2021-10-21T12:51:39.683Z">
 <meta property="article:author" content="Kiorffen">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://tanghaiyu.com/2017/03/22/article5-md/">
+<link rel="canonical" href="http://tanghaiyu.com/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/">
 
 
 <script id="page-configurations">
@@ -172,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2017/03/22/article5-md/">
+    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://cdn.tanghaiyu.com/touxiang.jpeg">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-15 10:49:49" itemprop="dateModified" datetime="2021-10-15T10:49:49+08:00">2021-10-15</time>
+                <time title="Modified: 2021-10-21 20:51:39" itemprop="dateModified" datetime="2021-10-21T20:51:39+08:00">2021-10-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,7 +215,7 @@
             </span>
 
           
-            <span id="/2017/03/22/article5-md/" class="post-meta-item leancloud_visitors" data-flag-title="C语言正则表达式使用及注意点" title="Views">
+            <span id="/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/" class="post-meta-item leancloud_visitors" data-flag-title="C语言正则表达式使用及注意点" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -230,8 +230,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2017/03/22/article5-md/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/03/22/article5-md/" itemprop="commentCount"></span>
+    <a title="valine" href="/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -392,11 +392,11 @@ typedef struct
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2017/03/21/article4/" rel="prev" title="多机同步hexo博客">
+    <a href="/2017/03/21/%E5%A4%9A%E6%9C%BA%E5%90%8C%E6%AD%A5hexo%E5%8D%9A%E5%AE%A2/" rel="prev" title="多机同步hexo博客">
       <i class="fa fa-chevron-left"></i> 多机同步hexo博客
     </a></div>
       <div class="post-nav-item">
-    <a href="/2017/03/24/article6/" rel="next" title="Python模版引擎Jinja2">
+    <a href="/2017/03/24/Python%E6%A8%A1%E7%89%88%E5%BC%95%E6%93%8EJinja2/" rel="next" title="Python模版引擎Jinja2">
       Python模版引擎Jinja2 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
