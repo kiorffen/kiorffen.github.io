@@ -1,50 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Python发送http请求解析返回json小demo</title>
-    <url>/2017/03/18/Python%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90%E8%BF%94%E5%9B%9Ejson%E5%B0%8Fdemo/</url>
-    <content><![CDATA[<p>python发起http请求，并解析返回的json字符串的小demo，方便以后用到。</p>
-<span id="more"></span>
-
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
-<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
-    
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> sys
-<span class="token keyword">import</span> json
-<span class="token keyword">import</span> urllib
-<span class="token keyword">import</span> urllib2
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    query_file <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-    query_index <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>query_file<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
-        <span class="token keyword">for</span> line <span class="token keyword">in</span> fp<span class="token punctuation">:</span>
-            query <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            query_index <span class="token operator">=</span> query_index <span class="token operator">+</span> <span class="token number">1</span>
-            query_gbk <span class="token operator">=</span> query
-            query <span class="token operator">=</span> query<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
-            url <span class="token operator">=</span> <span class="token string">'http://10.42.141.12:8089/adrender?query=%s&amp;ad_num=3&amp;srcid=101'</span>\\
-                  <span class="token string">'&amp;ip=172.22.182.55&amp;baiduid=61ABB404320C72436EB6B8352DFBB388:FG=1'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>query<span class="token punctuation">)</span>
-            req <span class="token operator">=</span> urllib2<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-            page <span class="token operator">=</span> req<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            ddict <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>page<span class="token punctuation">)</span>
-            expid <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'expid'</span><span class="token punctuation">]</span>
-            sid <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'sid'</span><span class="token punctuation">]</span>
-            ad_num <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'response_adnum'</span><span class="token punctuation">]</span>
-            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> ad_num<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                output_html <span class="token operator">=</span> <span class="token string">'%s-%d.html'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>query_gbk<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
-                output <span class="token operator">=</span> open<span class="token punctuation">(</span>output_html<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span>
-                ad <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'response_ads'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
-                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span>'<span class="token operator">&lt;</span>html<span class="token operator">></span>\'<span class="token punctuation">)</span>
-                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span>'<span class="token operator">&lt;</span>head<span class="token operator">></span>\    <span class="token operator">&lt;</span>meta http<span class="token operator">-</span>equiv<span class="token operator">=</span><span class="token string">"Content-Type"</span> content<span class="token operator">=</span><span class="token string">"text/html; charset=UTF-8"</span><span class="token operator">></span>\<span class="token operator">&lt;</span>head<span class="token operator">></span>\'<span class="token punctuation">)</span>
-                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"%s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>ad<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span>'\<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>\'<span class="token punctuation">)</span>
-                output<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-  </entry>
-  <entry>
     <title>C语言正则表达式使用及注意点</title>
     <url>/2017/03/22/C%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E7%82%B9/</url>
     <content><![CDATA[<h1 id="C语言正则表达式使用及注意点"><a href="#C语言正则表达式使用及注意点" class="headerlink" title="C语言正则表达式使用及注意点"></a>C语言正则表达式使用及注意点</h1><p>正则表达式作为程序员必备的高效率技能之一，程序开发中不可避免的就会用到，最近在开发中就需要使用C语言的正则表达式来解决一些问题。吐槽一句（gcc版本太低，用不了C++11的特性，也就用不了c++的regex）。</p>
@@ -182,6 +138,50 @@ typedef struct
       <tags>
         <tag>C/C++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Python发送http请求解析返回json小demo</title>
+    <url>/2017/03/18/Python%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90%E8%BF%94%E5%9B%9Ejson%E5%B0%8Fdemo/</url>
+    <content><![CDATA[<p>python发起http请求，并解析返回的json字符串的小demo，方便以后用到。</p>
+<span id="more"></span>
+
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#! /usr/bin/env python</span>
+<span class="token comment" spellcheck="true"># -*- coding:gbk -*-</span>
+    
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> urllib
+<span class="token keyword">import</span> urllib2
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    query_file <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    query_index <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span>query_file<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fp<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> line <span class="token keyword">in</span> fp<span class="token punctuation">:</span>
+            query <span class="token operator">=</span> line<span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            query_index <span class="token operator">=</span> query_index <span class="token operator">+</span> <span class="token number">1</span>
+            query_gbk <span class="token operator">=</span> query
+            query <span class="token operator">=</span> query<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
+            url <span class="token operator">=</span> <span class="token string">'http://10.42.141.12:8089/adrender?query=%s&amp;ad_num=3&amp;srcid=101'</span>\\
+                  <span class="token string">'&amp;ip=172.22.182.55&amp;baiduid=61ABB404320C72436EB6B8352DFBB388:FG=1'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>query<span class="token punctuation">)</span>
+            req <span class="token operator">=</span> urllib2<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+            page <span class="token operator">=</span> req<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            ddict <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>page<span class="token punctuation">)</span>
+            expid <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'expid'</span><span class="token punctuation">]</span>
+            sid <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'sid'</span><span class="token punctuation">]</span>
+            ad_num <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'response_adnum'</span><span class="token punctuation">]</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> ad_num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                output_html <span class="token operator">=</span> <span class="token string">'%s-%d.html'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>query_gbk<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+                output <span class="token operator">=</span> open<span class="token punctuation">(</span>output_html<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span>
+                ad <span class="token operator">=</span> ddict<span class="token punctuation">[</span><span class="token string">'response_ads'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token string">'ignore'</span><span class="token punctuation">)</span>
+                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span>'<span class="token operator">&lt;</span>html<span class="token operator">></span>\'<span class="token punctuation">)</span>
+                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span>'<span class="token operator">&lt;</span>head<span class="token operator">></span>\    <span class="token operator">&lt;</span>meta http<span class="token operator">-</span>equiv<span class="token operator">=</span><span class="token string">"Content-Type"</span> content<span class="token operator">=</span><span class="token string">"text/html; charset=UTF-8"</span><span class="token operator">></span>\<span class="token operator">&lt;</span>head<span class="token operator">></span>\'<span class="token punctuation">)</span>
+                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"%s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>ad<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                output<span class="token punctuation">.</span>write<span class="token punctuation">(</span>'\<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span>\'<span class="token punctuation">)</span>
+                output<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
   </entry>
   <entry>
     <title>Python模版引擎Jinja2</title>
@@ -853,6 +853,22 @@ soource deactivate //退出虚拟环境
       </categories>
       <tags>
         <tag>ML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>好用的下载歌曲工具</title>
+    <url>/2021/11/17/%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%AD%8C%E6%9B%B2%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p>最近听很多人说apple music听歌很不错，很多音乐都是无损品质，广告也很少，会员费也比国产的这几个音乐app便宜。</p>
+<p>于是我的好奇心也被带动起来，通过一些手段把网易的歌单导入到了AppleMusic，参考<a href="https://zhuanlan.zhihu.com/p/104595102">如何将网易云歌单导入到苹果Music？</a>，导入之后，发现我100多首歌曲，有50左右的歌曲导入不成功，才明白AppleMusic上面的音乐资源确实比较有限，于是想想要不还是放弃吧。</p>
+<p>但是稍微google一下发现，苹果音乐还有一个牛逼的功能，可以支持导入音乐，然后依然可以进行多端共享，这是个什么概念，相当于有一个苹果提供的可以上传10000首歌的免费云服务，并且可以配合AppleMusic添加到歌单，再不同端上都可以共享。</p>
+<p>接下来的问题就比较简单了，解决音乐下载的问题，发现这又是一个比较头疼的问题，现在各个音乐app都有自己单独的版权，下载音乐都需要收费。即使google到了很多集合下载的网站，你会发现不是qq就是虾米什么的搜索不到。</p>
+<p>作为程序员肯定要回归我们的最大资源圣地github，这一找才发现，好东西还真不少，现在直接找到了一个工具，可以支持5个主要站点的音乐下载，但是qq上的歌曲下载不了，现在qq的资源其实还比较丰富了。接着又找到了另外一个python库，可以支持12个主要的视频网站音乐搜索和下载。但是这个因为只有python我这边就重新封装了一个脚本，代码可以参考<a href="https://github.com/kiorffen/download_music_tools">https://github.com/kiorffen/download_music_tools</a>。</p>
+<p>使用方式也比较简单。</p>
+<p>搜索歌曲（李志的天空之城总算找到资源了）。<br><img src="https://cdn.tanghaiyu.com/20211118215900.png" alt="20211118215900"></p>
+<p>下载歌曲<br><img src="https://cdn.tanghaiyu.com/20211118220016.png" alt="20211118220016"></p>
+]]></content>
+      <tags>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>

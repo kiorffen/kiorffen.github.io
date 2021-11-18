@@ -168,6 +168,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2021/11/17/%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%AD%8C%E6%9B%B2%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://cdn.tanghaiyu.com/touxiang.jpeg">
+      <meta itemprop="name" content="Kiorffen">
+      <meta itemprop="description" content="高山仰止，景行行止；虽不能至，心向往之。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tang Haiyu Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/17/%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%AD%8C%E6%9B%B2%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">好用的下载歌曲工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-17 16:24:40" itemprop="dateCreated datePublished" datetime="2021-11-17T16:24:40+08:00">2021-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-18 22:00:53" itemprop="dateModified" datetime="2021-11-18T22:00:53+08:00">2021-11-18</time>
+              </span>
+
+          
+            <span id="/2021/11/17/%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%AD%8C%E6%9B%B2%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="好用的下载歌曲工具" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/11/17/%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%AD%8C%E6%9B%B2%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/17/%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%AD%8C%E6%9B%B2%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近听很多人说apple music听歌很不错，很多音乐都是无损品质，广告也很少，会员费也比国产的这几个音乐app便宜。</p>
+<p>于是我的好奇心也被带动起来，通过一些手段把网易的歌单导入到了AppleMusic，参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/104595102">如何将网易云歌单导入到苹果Music？</a>，导入之后，发现我100多首歌曲，有50左右的歌曲导入不成功，才明白AppleMusic上面的音乐资源确实比较有限，于是想想要不还是放弃吧。</p>
+<p>但是稍微google一下发现，苹果音乐还有一个牛逼的功能，可以支持导入音乐，然后依然可以进行多端共享，这是个什么概念，相当于有一个苹果提供的可以上传10000首歌的免费云服务，并且可以配合AppleMusic添加到歌单，再不同端上都可以共享。</p>
+<p>接下来的问题就比较简单了，解决音乐下载的问题，发现这又是一个比较头疼的问题，现在各个音乐app都有自己单独的版权，下载音乐都需要收费。即使google到了很多集合下载的网站，你会发现不是qq就是虾米什么的搜索不到。</p>
+<p>作为程序员肯定要回归我们的最大资源圣地github，这一找才发现，好东西还真不少，现在直接找到了一个工具，可以支持5个主要站点的音乐下载，但是qq上的歌曲下载不了，现在qq的资源其实还比较丰富了。接着又找到了另外一个python库，可以支持12个主要的视频网站音乐搜索和下载。但是这个因为只有python我这边就重新封装了一个脚本，代码可以参考<a target="_blank" rel="noopener" href="https://github.com/kiorffen/download_music_tools">https://github.com/kiorffen/download_music_tools</a>。</p>
+<p>使用方式也比较简单。</p>
+<p>搜索歌曲（李志的天空之城总算找到资源了）。<br><img src="https://cdn.tanghaiyu.com/20211118215900.png" alt="20211118215900"></p>
+<p>下载歌曲<br><img src="https://cdn.tanghaiyu.com/20211118220016.png" alt="20211118220016"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2021/10/21/%E6%9C%80%E4%BD%B3%E7%9A%84%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6-%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -567,109 +660,6 @@ sudo yum install ncurses-devel -y
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://cdn.tanghaiyu.com/touxiang.jpeg">
-      <meta itemprop="name" content="Kiorffen">
-      <meta itemprop="description" content="高山仰止，景行行止；虽不能至，心向往之。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tang Haiyu Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/" class="post-title-link" itemprop="url">阿里云机器安装Tensorflow和Paddlepaddle</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-11-03 16:47:11" itemprop="dateCreated datePublished" datetime="2017-11-03T16:47:11+08:00">2017-11-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-21 20:52:24" itemprop="dateModified" datetime="2021-10-21T20:52:24+08:00">2021-10-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/" class="post-meta-item leancloud_visitors" data-flag-title="阿里云机器安装Tensorflow和Paddlepaddle" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="阿里云机器安装tensorflow和paddlepaddle"><a href="#阿里云机器安装tensorflow和paddlepaddle" class="headerlink" title="阿里云机器安装tensorflow和paddlepaddle"></a>阿里云机器安装tensorflow和paddlepaddle</h3><p>准备用自己1核1G的阿里云机器学习一下深度学习知识，工欲善其事，必先利其器，话不多说，下面开始安装。</p>
-<h4 id="安装anaconda2"><a href="#安装anaconda2" class="headerlink" title="安装anaconda2"></a>安装anaconda2</h4><p>anaconda2是什么请自行百度，其实我也只知道他是一个python发行版，包含了很多计算工具包。<br>买的是最低版本的配置，直接wget官网的anaconda，居然只有100k左右的速度，于是我先下载到自己mac上，然后scp到阿里云机器上，mac可以直接scp到阿里云机器，一般人我不告诉他，这个速度可以达到5m左右，也超出了我的认识，怎么会这么快？不会是bug吧。。。<br>下载好的anaconda直接 bash xxx.sh 就可以完成安装。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/11/03/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%BA%E5%99%A8%E5%AE%89%E8%A3%85Tensorflow%E5%92%8CPaddlepaddle/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -741,7 +731,7 @@ sudo yum install ncurses-devel -y
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
