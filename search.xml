@@ -561,6 +561,9 @@ c_length<span class="token operator">=</span>0
 <p>使用方式也比较简单。主要是搜索和下载，搜索query用来指定关键词，src用来指定搜索的源站，不指定默认就是12个站点都会搜索，每个站点最多返回20个结果，去重的逻辑还没做，后面加一下。下载的话就是输入指定歌曲前面的数字就可以了，输入0直接退出重新搜索。</p>
 <p>搜索歌曲（李志的天空之城总算找到资源了）。<br><img src="https://cdn.tanghaiyu.com/20211118215900.png" alt="20211118215900"></p>
 <p>下载歌曲<br><img src="https://cdn.tanghaiyu.com/20211118220016.png" alt="20211118220016"></p>
+<p>备注：考虑到依赖版本库升级可能会导致服务不可用建议使用固定版本</p>
+<pre><code>pip install git+https://github.com/CharlesPikachu/musicdl.git@02003eaf48a2267a2b741661826f1139fca7cbe1
+</code></pre>
 ]]></content>
       <tags>
         <tag>python</tag>
