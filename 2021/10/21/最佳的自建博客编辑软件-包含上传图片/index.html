@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="http://tanghaiyu.com/2021/10/21/%E6%9C%80%E4%BD%B3%E7%9A%84%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6-%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="Tang Haiyu Blog">
 <meta property="og:description" content="把博客更新从开发机迁移到了本地mac环境，发现真的太香了，给我这个老古董好好上了一课。 现在本地环境使用vscode，编写md文件可以一边写一边预览非常方便。 当然给我带来更大震撼的是vs可以直接上传图片到七牛图床，配置我参考的是VSCode+PicGo插件配置，具体的步骤简单总结一下。 最后用我的一个头像进行测试一下，效果真的非常nice。">
-<meta property="og:locale">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://cdn.tanghaiyu.com/p2.jpeg">
 <meta property="article:published_time" content="2021-10-21T03:42:27.000Z">
 <meta property="article:modified_time" content="2024-11-09T10:58:15.870Z">
@@ -43,7 +43,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-Hans'
+    lang   : 'en'
   };
 </script>
 
@@ -78,8 +78,7 @@
   </style>
 </noscript>
 
-<link rel="stylesheet" href="/css/prism-coy.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -88,7 +87,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="تشغيل شريط التصفح">
+    <div class="toggle" aria-label="Toggle navigation bar">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -122,22 +121,22 @@
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>معلومات</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>الوسوم</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>التصنيفات</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-csdn">
@@ -172,7 +171,7 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://tanghaiyu.com/2021/10/21/%E6%9C%80%E4%BD%B3%E7%9A%84%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6-%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -194,24 +193,24 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">نُشر في</span>
+              <span class="post-meta-item-text">Posted on</span>
 
-              <time title="أُنشأ: 2021-10-21 11:42:27" itemprop="dateCreated datePublished" datetime="2021-10-21T11:42:27+08:00">2021-10-21</time>
+              <time title="Created: 2021-10-21 11:42:27" itemprop="dateCreated datePublished" datetime="2021-10-21T11:42:27+08:00">2021-10-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">عُدل في</span>
-                <time title="عُدل: 2024-11-09 18:58:15" itemprop="dateModified" datetime="2024-11-09T18:58:15+08:00">2024-11-09</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-11-09 18:58:15" itemprop="dateModified" datetime="2024-11-09T18:58:15+08:00">2024-11-09</time>
               </span>
 
           
-            <span id="/2021/10/21/%E6%9C%80%E4%BD%B3%E7%9A%84%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6-%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" class="post-meta-item leancloud_visitors" data-flag-title="最佳的自建博客编辑软件-包含上传图片" title="مشاهدات">
+            <span id="/2021/10/21/%E6%9C%80%E4%BD%B3%E7%9A%84%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6-%E5%8C%85%E5%90%AB%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" class="post-meta-item leancloud_visitors" data-flag-title="最佳的自建博客编辑软件-包含上传图片" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">مشاهدات: </span>
+              <span class="post-meta-item-text">Views: </span>
               <span class="leancloud-visitors-count"></span>
             </span>
   
@@ -317,10 +316,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          المحتويات
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          عام
+          Overview
         </li>
       </ul>
 
@@ -342,20 +341,20 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">17</span>
-          <span class="site-state-item-name">المقالات</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">التصنيفات</span></a>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">الوسوم</span></a>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -395,7 +394,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Kiorffen</span>
 </div>
-  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
         
